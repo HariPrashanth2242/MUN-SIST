@@ -26,7 +26,7 @@ export default function CommitteesPage() {
 
   const handleTabChange = (value: string) => {
     setActiveTab(value);
-    router.push(/committees?value=${value}, { scroll: false }); // Update URL without page reload
+    router.push(`/committees?value=${value}`, { scroll: false }); // Update URL without page reload
   };
   return (
     <div className="container py-12">
