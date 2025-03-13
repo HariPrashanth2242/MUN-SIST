@@ -26,7 +26,7 @@ export default function CommitteesPage() {
 
   const handleTabChange = (value: string) => {
     setActiveTab(value);
-    router.push(`/committees?value=${value}`, { scroll: false }); // Update URL without page reload
+    router.push(/committees?value=${value}, { scroll: false }); // Update URL without page reload
   };
   return (
     <div className="container py-12">
@@ -50,7 +50,7 @@ export default function CommitteesPage() {
             <Card>
               <CardHeader className="relative h-48 p-0">
                 <Image
-                  src="/UNGA.svg?height=400&width=800"
+                  src="/placeholder.svg?height=400&width=800"
                   alt="United Nations General Assembly"
                   fill
                   className="object-cover rounded-t-lg"
@@ -107,7 +107,7 @@ export default function CommitteesPage() {
             <Card>
               <CardHeader className="relative h-48 p-0">
                 <Image
-                  src="UNHRC.svg?height=400&width=400"
+                  src="/placeholder.svg?height=400&width=800"
                   alt="United Nations Human Rights Council"
                   fill
                   className="object-cover rounded-t-lg"
@@ -163,7 +163,7 @@ export default function CommitteesPage() {
             <Card>
               <CardHeader className="relative h-48 p-0">
                 <Image
-                  src="/UNCSW.svg?height=400&width=800"
+                  src="/placeholder.svg?height=400&width=800"
                   alt="UN Commission on the Status of Women"
                   fill
                   className="object-cover rounded-t-lg"
@@ -217,7 +217,7 @@ export default function CommitteesPage() {
             <Card>
               <CardHeader className="relative h-48 p-0">
                 <Image
-                  src="/crisis.svg?height=400&width=800"
+                  src="/placeholder.svg?height=400&width=800"
                   alt="Crisis Committee"
                   fill
                   className="object-cover rounded-t-lg"
@@ -273,7 +273,7 @@ export default function CommitteesPage() {
             <Card>
               <CardHeader className="relative h-48 p-0">
                 <Image
-                  src="/cam.svg?height=400&width=800"
+                  src="/placeholder.svg?height=400&width=800"
                   alt="International Press Corps"
                   fill
                   className="object-cover rounded-t-lg"
