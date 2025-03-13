@@ -1,12 +1,33 @@
+"use client";
 import Link from "next/link"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Download, ExternalLink } from "lucide-react"
-import { Badge } from "@/components/ui/badge"
+import { Badge } from "@/components/ui/badge" // Add this at the top of your file
+import { useEffect, useState } from "react";
+import { useSearchParams, useRouter } from "next/navigation";
+
+
 
 export default function CommitteesPage() {
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const [activeTab, setActiveTab] = useState("unga"); // Default tab
+
+  useEffect(() => {
+    const value = searchParams.get("value"); // Get 'value' from URL
+    if (value) {
+      setActiveTab(value); // Set active tab
+      document.getElementById(value)?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }, [searchParams]);
+
+  const handleTabChange = (value: string) => {
+    setActiveTab(value);
+    router.push(`/committees?value=${value}`, { scroll: false }); // Update URL without page reload
+  };
   return (
     <div className="container py-12">
       <div className="max-w-4xl mx-auto">
@@ -16,7 +37,7 @@ export default function CommitteesPage() {
           critical global issues that require innovative diplomatic solutions.
         </p>
 
-        <Tabs defaultValue="unga" className="w-full">
+        <Tabs value={activeTab} onValueChange={handleTabChange} className="w-full">
           <TabsList className="grid w-full grid-cols-2 md:grid-cols-5">
             <TabsTrigger value="unga">UNGA</TabsTrigger>
             <TabsTrigger value="unhrc">UNHRC</TabsTrigger>
