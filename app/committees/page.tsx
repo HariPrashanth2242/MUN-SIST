@@ -50,7 +50,7 @@ export default function CommitteesPage() {
             <Card>
               <CardHeader className="relative h-48 p-0">
                 <Image
-                  src="/placeholder.svg?height=400&width=800"
+                  src="/UNGA.svg?height=400&width=800"
                   alt="United Nations General Assembly"
                   fill
                   className="object-cover rounded-t-lg"
@@ -107,7 +107,7 @@ export default function CommitteesPage() {
             <Card>
               <CardHeader className="relative h-48 p-0">
                 <Image
-                  src="/placeholder.svg?height=400&width=800"
+                  src="/UNHRC.svg?height=400&width=800"
                   alt="United Nations Human Rights Council"
                   fill
                   className="object-cover rounded-t-lg"
@@ -163,7 +163,7 @@ export default function CommitteesPage() {
             <Card>
               <CardHeader className="relative h-48 p-0">
                 <Image
-                  src="/placeholder.svg?height=400&width=800"
+                  src="/UNCSW.svg?height=400&width=800"
                   alt="UN Commission on the Status of Women"
                   fill
                   className="object-cover rounded-t-lg"
@@ -217,7 +217,7 @@ export default function CommitteesPage() {
             <Card>
               <CardHeader className="relative h-48 p-0">
                 <Image
-                  src="/placeholder.svg?height=400&width=800"
+                  src="/crisis.svg?height=400&width=800"
                   alt="Crisis Committee"
                   fill
                   className="object-cover rounded-t-lg"
@@ -273,7 +273,7 @@ export default function CommitteesPage() {
             <Card>
               <CardHeader className="relative h-48 p-0">
                 <Image
-                  src="/placeholder.svg?height=400&width=800"
+                  src="/cam.svg?height=400&width=800"
                   alt="International Press Corps"
                   fill
                   className="object-cover rounded-t-lg"

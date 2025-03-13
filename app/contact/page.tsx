@@ -163,12 +163,12 @@ export default function ContactPage() {
                   <div className="flex flex-col items-center text-center">
                     <div className="w-24 h-24 rounded-full bg-muted mb-4 overflow-hidden">
                       <img
-                        src="/placeholder.svg?height=100&width=100"
+                        src="/gae.svg?height=100&width=100"
                         alt="Secretary General"
                         className="w-full h-full object-cover"
                       />
                     </div>
-                    <h3 className="font-semibold">Aditya Sharma</h3>
+                    <h3 className="font-semibold">Anish Inti</h3>
                     <p className="text-sm text-muted-foreground mb-2">Secretary General</p>
                     <Link href="mailto:sg@sathyabamamun.com" className="text-primary text-sm hover:underline">
                       sg@sathyabamamun.com
@@ -182,13 +182,13 @@ export default function ContactPage() {
                   <div className="flex flex-col items-center text-center">
                     <div className="w-24 h-24 rounded-full bg-muted mb-4 overflow-hidden">
                       <img
-                        src="/placeholder.svg?height=100&width=100"
-                        alt="Director General"
+                        src="/deputy.svg?height=100&width=100"
+                        alt="Deputy Secretary General"
                         className="w-full h-full object-cover"
                       />
                     </div>
-                    <h3 className="font-semibold">Priya Patel</h3>
-                    <p className="text-sm text-muted-foreground mb-2">Director General</p>
+                    <h3 className="font-semibold">thaarani</h3>
+                    <p className="text-sm text-muted-foreground mb-2">Deputy Secretary General</p>
                     <Link href="mailto:dg@sathyabamamun.com" className="text-primary text-sm hover:underline">
                       dg@sathyabamamun.com
                     </Link>
@@ -201,7 +201,7 @@ export default function ContactPage() {
                   <div className="flex flex-col items-center text-center">
                     <div className="w-24 h-24 rounded-full bg-muted mb-4 overflow-hidden">
                       <img
-                        src="/placeholder.svg?height=100&width=100"
+                        src="/geeky.svg?height=100&width=100"
                         alt="Under-Secretary General"
                         className="w-full h-full object-cover"
                       />

@@ -89,14 +89,14 @@ export default function AboutPage() {
               <div className="mt-4 flex items-center">
                 <div className="relative h-12 w-12 rounded-full overflow-hidden mr-4">
                   <Image
-                    src="/placeholder.svg?height=100&width=100"
+                    src="/gae.svg?height=100&width=100"
                     alt="Secretary General"
                     fill
                     className="object-cover"
                   />
                 </div>
                 <div>
-                  <p className="font-semibold">Aditya Sharma</p>
+                  <p className="font-semibold">Anish Inti</p>
                   <p className="text-sm text-muted-foreground">Secretary General, Sathyabama MUN 2025</p>
                 </div>
               </div>
@@ -107,4 +107,3 @@ export default function AboutPage() {
     </div>
   )
 }
-
