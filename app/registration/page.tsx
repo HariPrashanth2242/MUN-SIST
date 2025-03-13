@@ -1,3 +1,7 @@
+"use client"; // Ensure this is at the top
+
+import { useState } from "react";
+ 
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
@@ -5,8 +9,30 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { ExternalLink, Send, MessageSquare } from "lucide-react"
 import { Separator } from "@/components/ui/separator"
 import { Badge } from "@/components/ui/badge"
+import { Input } from "@/components/ui/input"; 
+import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/select";
+
+
 
 export default function RegistrationPage() {
+  const [selectedCommittee1, setSelectedCommittee1] = useState("");
+  const [selectedCommittee2, setSelectedCommittee2] = useState("");
+  const [selectedDepartment, setSelectedDepartment] = useState("");
+  const [selected, setSelected] = useState("");
+  const [selectedYear, setSelectedYear] = useState("");
+  const [submitted, setSubmitted] = useState(false);
+  const [activeSection, setActiveSection] = useState(1);
+  const [step, setStep] = useState(1);
+  const totalSteps = 4;
+
+  const nextStep = () => setStep((prev) => (prev < totalSteps ? prev + 1 : prev));
+  const prevStep = () => setStep((prev) => (prev > 1 ? prev - 1 : prev));
+
+  const handleSubmit = () => {
+    setSubmitted(true);
+    console.log("Hi");
+    setTimeout(() => setSubmitted(false), 3000); // Hide after 3s
+  };
   return (
     <div className="container py-12">
       <div className="max-w-4xl mx-auto">
@@ -57,20 +83,266 @@ export default function RegistrationPage() {
                     <li>Registration is free of charge</li>
                     <li>Delegates must be current students</li>
                     <li>Country assignments will be made on a first-come, first-served basis</li>
-                    <li>Registration deadline: March 1, 2025</li>
+                    <li>Registration deadline: March 18, 2025</li>
                   </ul>
                 </div>
               </CardContent>
-              <CardFooter>
-                <Button className="w-full" asChild>
-                  <Link href="https://forms.google.com" target="_blank" rel="noopener noreferrer">
-                    <ExternalLink className="mr-2 h-4 w-4" />
-                    Register as Delegate
-                  </Link>
-                </Button>
-              </CardFooter>
+  <CardFooter>
+  {/* Form */}
+<form 
+  action="https://docs.google.com/forms/d/e/1FAIpQLSdjI_5H5PHIrekZd9ptV43-o1laVKmiSmeHLrvlGmu5nPYIdQ/formResponse"
+  method="POST"
+  target="hidden_iframe"
+  className="w-full space-y-8"
+
+  onSubmit={(e) => {
+    e.preventDefault(); // Prevent default form submission to trigger custom logic first
+    alert("Form submitted successfully!"); // Alert before the form actually submits
+    (e.target as HTMLFormElement).submit(); // Cast e.target to HTMLFormElement and submit the form
+  }}
+
+>
+
+  
+  {/* Important Notice */}
+  <div className="p-6 border-l-4 border-red-600 bg-red-50 text-red-800 rounded-md">
+    <p className="font-semibold text-lg">Important Notice:</p>
+    <p className="mt-2 text-sm">
+      Kindly ensure that you go through the brochure to find details regarding the committees and agenda before proceeding with the registration.
+      This form shall be filled and submitted on or before <strong>18th March, 2025</strong>.
+    </p>
+  </div>
+
+  {/* Section 1: Personal Details */}
+  <h2 className="text-lg font-semibold mt-8">Section 1: Personal Details</h2>
+
+  <div className="space-y-6">
+    <label className="block text-sm">Full Name with Initial</label>
+    <Input
+      type="text"
+      name="entry.984212860"
+      required
+      className="w-full p-4 border rounded-md"
+      placeholder="Enter your full name with initial"
+    />
+    
+    <label className="block text-sm">Email ID</label>
+    <Input
+      type="email"
+      name="entry.2086501669"
+      required
+      className="w-full p-4 border rounded-md"
+      placeholder="Enter your email address"
+    />
+
+    <label className="block text-sm">Contact Number</label>
+    <Input
+      type="tel"
+      name="entry.516313487"
+      required
+      className="w-full p-4 border rounded-md"
+      placeholder="Enter your contact number"
+    />
+
+    {/* Year of Study (Dropdown) */}
+    <label className="block text-sm">Year of Study</label>
+    <Select name="entry.1605150295" required defaultValue="" onValueChange={(value) => setSelectedYear(value)}>
+      <SelectTrigger className={`w-full p-4 border rounded-md ${selectedYear ? "text-black" : "text-gray-400"}`}>
+        <SelectValue placeholder="Select Year of Study" />
+      </SelectTrigger>
+      <SelectContent>
+        <SelectItem value="I">I</SelectItem> {/* 1st year */}
+        <SelectItem value="II">II</SelectItem> {/* 2nd year */}
+        <SelectItem value="III">III</SelectItem> {/* 3rd year */}
+        <SelectItem value="IV">IV</SelectItem> {/* 4th year */}
+        <SelectItem value="V">V</SelectItem> {/* 5th year */}
+      </SelectContent>
+    </Select>
+
+
+    {/* Department Selection */}
+    <label className="block text-sm">Department</label>
+    <Select name="entry.1605150295" required defaultValue="" onValueChange={(value) => setSelectedDepartment(value)}>
+      <SelectTrigger className={`w-full p-4 border rounded-md ${selectedDepartment ? "text-black" : "text-gray-400"}`}>
+        <SelectValue placeholder="Select Department" />
+      </SelectTrigger>
+      <SelectContent>
+        <SelectItem value="CSE">Computer Science Engineering</SelectItem>
+        <SelectItem value="ECE">Electronics and Communication</SelectItem>
+        <SelectItem value="MECH">Mechanical Engineering</SelectItem>
+        <SelectItem value="EEE">Electrical and Electronics Engineering</SelectItem>
+        <SelectItem value="CIVIL">Civil Engineering</SelectItem>
+      </SelectContent>
+    </Select>
+
+    <label className="block text-sm">Enrolled in</label>
+    <Input
+      type="text"
+      name="entry.753148491"
+      required
+      className="w-full p-4 border rounded-md"
+      placeholder="Enter your full name with initial"
+    />
+
+    <label className="block text-sm">Course Name</label>
+    <Input
+      type="text"
+      name="entry.1375212951"
+      required
+      className="w-full p-4 border rounded-md"
+      placeholder="Enter your course name"
+    />
+  </div>
+
+  {/* Section 2: Committee Preferences */}
+  <h2 className="text-lg font-semibold mt-8">Section 2: Committee Preferences</h2>
+
+  {/* Agenda */}
+  <div className="p-6 border-l-4 border-blue-600 bg-blue-50 text-blue-800 rounded-md">
+    <p className="font-semibold text-lg">Agenda:</p>
+    <ul className="list-disc ml-4 text-sm">
+      <li><strong>UNGA:</strong> Debating the future of international law in addressing neo-imperialism and economic exploitation.</li>
+      <li><strong>UNHRC:</strong> Defining the limits of state power in monitoring citizens under the guise of national security.</li>
+      <li><strong>UNCSW:</strong> Bridging the gender gap: ensuring equal representation of women in leadership.</li>
+      <li><strong>CCC:</strong> Defining the ethical boundaries of humanitarian intervention in conflict zones.</li>
+    </ul>
+    <p className="mt-4 text-sm"><strong>Kindly ensure that you choose two different preferences, without repetition.</strong></p>
+  </div>
+
+  <div className="space-y-6 mt-6">
+    <label className="block text-sm">Committee Preference 1</label>
+    <Select name="entry.1217884006" required defaultValue="" onValueChange={(value) => setSelectedCommittee1(value)}>
+      <SelectTrigger className={`w-full p-4 border rounded-md ${selectedCommittee1 ? "text-black" : "text-gray-400"}`}>
+        <SelectValue placeholder="Select Committee" />
+      </SelectTrigger>
+      <SelectContent>
+        <SelectItem value="UNGA">UNGA</SelectItem>
+        <SelectItem value="UNHRC">UNHRC</SelectItem>
+        <SelectItem value="UNCSW">UNCSW</SelectItem>
+        <SelectItem value="CCC">CCC</SelectItem>
+      </SelectContent>
+    </Select>
+
+    <label className="block text-sm">Committee Preference 2</label>
+    <Select name="entry.291369863" required defaultValue="" onValueChange={(value) => setSelectedCommittee2(value)}>
+      <SelectTrigger className={`w-full p-4 border rounded-md ${selectedCommittee2 ? "text-black" : "text-gray-400"}`}>
+        <SelectValue placeholder="Select Committee" />
+      </SelectTrigger>
+      <SelectContent>
+        <SelectItem value="UNGA">UNGA</SelectItem>
+        <SelectItem value="UNHRC">UNHRC</SelectItem>
+        <SelectItem value="UNCSW">UNCSW</SelectItem>
+        <SelectItem value="CCC">CCC</SelectItem>
+      </SelectContent>
+    </Select>
+  </div>
+
+  {/* Section 3: Country Preferences */}
+  <h2 className="text-lg font-semibold mt-8">Section 3: Country Preferences</h2>
+
+  <div className="space-y-6 mt-6">
+    <label className="block text-sm">Country Preference 1</label>
+    <Input
+      type="text"
+      name="entry.311927294"
+      required
+      className="w-full p-4 border rounded-md"
+      placeholder="Enter your first country preference"
+    />
+
+    <label className="block text-sm">Country Preference 2</label>
+    <Input
+      type="text"
+      name="entry.1940318837"
+      required
+      className="w-full p-4 border rounded-md"
+      placeholder="Enter your second country preference"
+    />
+
+    <label className="block text-sm">Country Preference 3</label>
+    <Input
+      type="text"
+      name="entry.1590580922"
+      required
+      className="w-full p-4 border rounded-md"
+      placeholder="Enter your third country preference"
+    />
+    <label className="block text-sm">Country Preference 4</label>
+    <Input
+      type="text"
+      name="entry.917409920"
+      required
+      className="w-full p-4 border rounded-md"
+      placeholder="Enter your first country preference"
+    />
+
+    <label className="block text-sm">Country Preference 5</label>
+    <Input
+      type="text"
+      name="entry.1804007004"
+      required
+      className="w-full p-4 border rounded-md"
+      placeholder="Enter your second country preference"
+    />
+
+    <label className="block text-sm">Country Preference 6</label>
+    <Input
+      type="text"
+      name="entry.284053758"
+      required
+      className="w-full p-4 border rounded-md"
+      placeholder="Enter your third country preference"
+    />
+  </div>
+
+  {/* Section 4: Experience Details */}
+  <h2 className="text-lg font-semibold mt-8">Section 4: Experience Details</h2>
+
+  {/* Experience Information */}
+  <div className="p-6 border-l-4 border-blue-600 bg-blue-50 text-primary-800 rounded-md">
+    <p className="font-semibold text-lg">Kindly ensure that you answer these questions accurately for the facilitation of the MOCK MUN training session.</p>
+  </div>
+
+  <div className="space-y-6 mt-6">
+    <label className="block text-sm">Have you participated in MUN before?</label>
+    <Select name="entry.17978804983" required defaultValue="" onValueChange={(value) => setSelected(value)}>
+      <SelectTrigger className={`w-full p-4 border rounded-md ${selected ? "text-black" : "text-gray-400"}`}>
+        <SelectValue placeholder="Select Yes or No" />
+      </SelectTrigger>
+      <SelectContent>
+        <SelectItem value="yes">Yes</SelectItem>
+        <SelectItem value="no">No</SelectItem>
+      </SelectContent>
+    </Select>
+
+    <label className="block text-sm">Previous MUN Experiences</label>
+    <Input
+      type="text"
+      name="entry.836497009"
+      className="w-full p-4 border rounded-md"
+      placeholder="Enter details of your previous MUN experiences (if any)"
+    />
+
+    <label className="block text-sm">Previous MUN Wins</label>
+    <Input
+      type="text"
+      name="entry.1868924427"
+      className="w-full p-4 border rounded-md"
+      placeholder="Enter details of your previous MUN wins (if any)"
+    />
+  </div>
+
+  {/* Submit Button */}
+  <Button type="submit" className="w-full py-4 px-6 bg-primary text-white rounded-md mt-8">Submit Registration</Button>
+  <iframe name="hidden_iframe" style={{ display: "none" }} />
+</form>
+</CardFooter>
+
+
+
             </Card>
           </TabsContent>
+
 
           <TabsContent value="eb" className="mt-6">
             <Card>
@@ -204,6 +476,7 @@ export default function RegistrationPage() {
             </CardContent>
           </Card>
 
+
           <Card>
             <CardHeader>
               <div className="flex items-center justify-between">
@@ -269,4 +542,3 @@ export default function RegistrationPage() {
     </div>
   )
 }
-
