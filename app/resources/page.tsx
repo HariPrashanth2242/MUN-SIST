@@ -1,3 +1,4 @@
+"use client";
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
@@ -5,8 +6,46 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Download, FileText, BookOpen, HelpCircle } from "lucide-react"
 import { Separator } from "@/components/ui/separator"
 import { Badge } from "@/components/ui/badge"
+import { useEffect, useState } from "react";
+import { useSearchParams, useRouter } from "next/navigation";
 
 export default function ResourcesPage() {
+    const searchParams = useSearchParams();
+    const router = useRouter();
+    const [activeTab, setActiveTab] = useState("study-guides"); // Default tab
+  
+    useEffect(() => {
+      const value = searchParams.get("value"); // Get 'value' from URL
+      if (value) {
+        if (value === "beginners") {
+          // Scroll to just above the bottom of the page when the 'beginners' tab is clicked
+          const scrollPosition = document.documentElement.scrollHeight - window.innerHeight - 250; // Adjust 100 as needed for "just above the bottom"
+          window.scrollTo({ top: scrollPosition, behavior: "smooth" });
+        } else {
+          setActiveTab(value); // Set active tab if it's not 'beginners'
+          document.getElementById(value)?.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      }
+    }, [searchParams]);
+    
+    
+    const handleTabChange = (value: string) => {
+      // Only call setActiveTab if value is not 'beginners'
+      if (value !== "beginners") {
+        setActiveTab(value);
+      }
+    
+      if (value === "beginners") {
+        // Scroll to just above the bottom of the page when the 'beginners' tab is clicked
+        const scrollPosition = document.documentElement.scrollHeight - window.innerHeight - 100; // Adjust 100 as needed for "just above the bottom"
+        window.scrollTo({ top: scrollPosition, behavior: "smooth" });
+      }
+    
+      router.push(`/resources?value=${value}`, { scroll: false }); // Update URL without page reload
+    };
+    
+    
+
   return (
     <div className="container py-12">
       <div className="max-w-4xl mx-auto">
@@ -16,7 +55,7 @@ export default function ResourcesPage() {
           to help both experienced delegates and newcomers.
         </p>
 
-        <Tabs defaultValue="study-guides" className="w-full">
+        <Tabs value={activeTab} onValueChange={handleTabChange} className="w-full">
           <TabsList className="grid w-full grid-cols-1 md:grid-cols-3">
             <TabsTrigger value="study-guides">Study Guides</TabsTrigger>
             <TabsTrigger value="rules">Rules of Procedure</TabsTrigger>
@@ -417,7 +456,7 @@ export default function ResourcesPage() {
                   </Link>
                 </Button>
               </div>
-            </div>
+            </div> 
           </div>
         </div>
       </div>
