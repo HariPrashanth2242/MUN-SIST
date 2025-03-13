@@ -1,12 +1,38 @@
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { ExternalLink, Send, MessageSquare } from "lucide-react"
-import { Separator } from "@/components/ui/separator"
-import { Badge } from "@/components/ui/badge"
+"use client"; // Ensure this is at the top
+
+import { useState } from "react";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { ExternalLink, Send, MessageSquare } from "lucide-react";
+import { Separator } from "@/components/ui/separator";
+import { Badge } from "@/components/ui/badge";
+import { Input } from "@/components/ui/input";
+import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/select";
 
 export default function RegistrationPage() {
+  const [selectedCommittee1, setSelectedCommittee1] = useState("");
+  const [selectedCommittee2, setSelectedCommittee2] = useState("");
+  const [selectedDepartment, setSelectedDepartment] = useState("");
+  const [selectedYear, setSelectedYear] = useState("");
+  const [selected, setSelected] = useState("");
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    console.log("Form submitted!");
+    try {
+      const form = e.target as HTMLFormElement;
+      form.submit();
+      setSubmitted(true);
+      setTimeout(() => setSubmitted(false), 3000); // Hide success message after 3 seconds
+    } catch (error) {
+      console.error("Form submission failed:", error);
+      alert("Form submission failed. Please try again.");
+    }
+  };
+
   return (
     <div className="container py-12">
       <div className="max-w-4xl mx-auto">
@@ -57,21 +83,235 @@ export default function RegistrationPage() {
                     <li>Registration is free of charge</li>
                     <li>Delegates must be current students</li>
                     <li>Country assignments will be made on a first-come, first-served basis</li>
-                    <li>Registration deadline: March 1, 2025</li>
+                    <li>Registration deadline: March 18, 2025</li>
                   </ul>
                 </div>
               </CardContent>
               <CardFooter>
-                <Button className="w-full" asChild>
-                  <Link href="https://forms.google.com" target="_blank" rel="noopener noreferrer">
-                    <ExternalLink className="mr-2 h-4 w-4" />
-                    Register as Delegate
-                  </Link>
-                </Button>
+                <form
+                  action="https://docs.google.com/forms/d/e/1FAIpQLSdjI_5H5PHIrekZd9ptV43-o1laVKmiSmeHLrvlGmu5nPYIdQ/formResponse"
+                  method="POST"
+                  target="hidden_iframe"
+                  onSubmit={handleSubmit}
+                  className="w-full space-y-8"
+                >
+                  {/* Important Notice */}
+                  <div className="p-6 border-l-4 border-red-600 bg-red-50 text-red-800 rounded-md">
+                    <p className="font-semibold text-lg">Important Notice:</p>
+                    <p className="mt-2 text-sm">
+                      Kindly ensure that you go through the brochure to find details regarding the committees and agenda
+                      before proceeding with the registration. This form shall be filled and submitted on or before{" "}
+                      <strong>18th March, 2025</strong>.
+                    </p>
+                  </div>
+
+                  {/* Section 1: Personal Details */}
+                  <h2 className="text-lg font-semibold mt-8">Section 1: Personal Details</h2>
+                  <div className="space-y-6">
+                    <label className="block text-sm">Full Name with Initial</label>
+                    <Input
+                      type="text"
+                      name="entry.984212860"
+                      required
+                      className="w-full p-4 border rounded-md"
+                      placeholder="Enter your full name with initial"
+                    />
+
+                    <label className="block text-sm">Email ID</label>
+                    <Input
+                      type="email"
+                      name="entry.2086501669"
+                      required
+                      className="w-full p-4 border rounded-md"
+                      placeholder="Enter your email address"
+                    />
+
+                    <label className="block text-sm">Contact Number</label>
+                    <Input
+                      type="tel"
+                      name="entry.516313487"
+                      required
+                      className="w-full p-4 border rounded-md"
+                      placeholder="Enter your contact number"
+                    />
+
+                    {/* Year of Study (Dropdown) */}
+                    <label className="block text-sm">Year of Study</label>
+                    <Select
+                      name="entry.1363191506"
+                      required
+                      defaultValue=""
+                      onValueChange={(value) => setSelectedYear(value)}
+                    >
+                      <SelectTrigger className={`w-full p-4 border rounded-md ${selectedYear ? "text-black" : "text-gray-400"}`}>
+                        <SelectValue placeholder="Select Year of Study" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="I">I</SelectItem>
+                        <SelectItem value="II">II</SelectItem>
+                        <SelectItem value="III">III</SelectItem>
+                        <SelectItem value="IV">IV</SelectItem>
+                        <SelectItem value="V">V</SelectItem>
+                      </SelectContent>
+                    </Select>
+
+                    {/* Department Selection */}
+                    <label className="block text-sm">Department</label>
+                    <Select
+                      name="entry.1605150295"
+                      required
+                      defaultValue=""
+                      onValueChange={(value) => setSelectedDepartment(value)}
+                    >
+                      <SelectTrigger className={`w-full p-4 border rounded-md ${selectedDepartment ? "text-black" : "text-gray-400"}`}>
+                        <SelectValue placeholder="Select Department" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="CSE">Computer Science Engineering</SelectItem>
+                        <SelectItem value="ECE">Electronics and Communication</SelectItem>
+                        <SelectItem value="MECH">Mechanical Engineering</SelectItem>
+                        <SelectItem value="EEE">Electrical and Electronics Engineering</SelectItem>
+                        <SelectItem value="CIVIL">Civil Engineering</SelectItem>
+                      </SelectContent>
+                    </Select>
+
+                    <label className="block text-sm">Course Name</label>
+                    <Input
+                      type="text"
+                      name="entry.753148491"
+                      required
+                      className="w-full p-4 border rounded-md"
+                      placeholder="Enter your course name"
+                    />
+                  </div>
+
+                  {/* Section 2: Committee Preferences */}
+                  <h2 className="text-lg font-semibold mt-8">Section 2: Committee Preferences</h2>
+                  <div className="space-y-6">
+                    <label className="block text-sm">Committee Preference 1</label>
+                    <Select
+                      name="entry.1375212951"
+                      required
+                      defaultValue=""
+                      onValueChange={(value) => setSelectedCommittee1(value)}
+                    >
+                      <SelectTrigger className={`w-full p-4 border rounded-md ${selectedCommittee1 ? "text-black" : "text-gray-400"}`}>
+                        <SelectValue placeholder="Select Committee" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="UNGA">UNGA</SelectItem>
+                        <SelectItem value="UNHRC">UNHRC</SelectItem>
+                        <SelectItem value="UNCSW">UNCSW</SelectItem>
+                        <SelectItem value="CCC">CCC</SelectItem>
+                      </SelectContent>
+                    </Select>
+
+                    <label className="block text-sm">Committee Preference 2</label>
+                    <Select
+                      name="entry.1217884006"
+                      required
+                      defaultValue=""
+                      onValueChange={(value) => setSelectedCommittee2(value)}
+                    >
+                      <SelectTrigger className={`w-full p-4 border rounded-md ${selectedCommittee2 ? "text-black" : "text-gray-400"}`}>
+                        <SelectValue placeholder="Select Committee" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="UNGA">UNGA</SelectItem>
+                        <SelectItem value="UNHRC">UNHRC</SelectItem>
+                        <SelectItem value="UNCSW">UNCSW</SelectItem>
+                        <SelectItem value="CCC">CCC</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+
+                  {/* Section 3: Country Preferences */}
+                  <h2 className="text-lg font-semibold mt-8">Section 3: Country Preferences</h2>
+                  <div className="space-y-6">
+                    <label className="block text-sm">Country Preference 1</label>
+                    <Input
+                      type="text"
+                      name="entry.291369863"
+                      required
+                      className="w-full p-4 border rounded-md"
+                      placeholder="Enter your first country preference"
+                    />
+
+                    <label className="block text-sm">Country Preference 2</label>
+                    <Input
+                      type="text"
+                      name="entry.311927294"
+                      required
+                      className="w-full p-4 border rounded-md"
+                      placeholder="Enter your second country preference"
+                    />
+
+                    <label className="block text-sm">Country Preference 3</label>
+                    <Input
+                      type="text"
+                      name="entry.1940318837"
+                      required
+                      className="w-full p-4 border rounded-md"
+                      placeholder="Enter your third country preference"
+                    />
+                  </div>
+
+                  {/* Section 4: Experience Details */}
+                  <h2 className="text-lg font-semibold mt-8">Section 4: Experience Details</h2>
+                  <div className="space-y-6">
+                    <label className="block text-sm">Have you participated in MUN before?</label>
+                    <Select
+                      name="entry.1590580922"
+                      required
+                      defaultValue=""
+                      onValueChange={(value) => setSelected(value)}
+                    >
+                      <SelectTrigger className={`w-full p-4 border rounded-md ${selected ? "text-black" : "text-gray-400"}`}>
+                        <SelectValue placeholder="Select Yes or No" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="Yes">Yes</SelectItem>
+                        <SelectItem value="No">No</SelectItem>
+                      </SelectContent>
+                    </Select>
+
+                    <label className="block text-sm">Previous MUN Experiences</label>
+                    <Input
+                      type="text"
+                      name="entry.917409920"
+                      className="w-full p-4 border rounded-md"
+                      placeholder="Enter details of your previous MUN experiences (if any)"
+                    />
+
+                    <label className="block text-sm">Previous MUN Wins</label>
+                    <Input
+                      type="text"
+                      name="entry.1804007004"
+                      className="w-full p-4 border rounded-md"
+                      placeholder="Enter details of your previous MUN wins (if any)"
+                    />
+                  </div>
+
+                  {/* Submit Button */}
+                  <Button type="submit" className="w-full py-4 px-6 bg-primary text-white rounded-md mt-8">
+                    Submit Registration
+                  </Button>
+                </form>
+
+                {/* Hidden Iframe to Handle Submission */}
+                <iframe name="hidden_iframe" style={{ display: "none" }}></iframe>
+
+                {/* Success Message */}
+                {submitted && (
+                  <div className="mt-4 p-4 bg-green-50 text-green-800 rounded-md">
+                    Form submitted successfully!
+                  </div>
+                )}
               </CardFooter>
             </Card>
           </TabsContent>
 
+          {/* Executive Board Application Tab */}
           <TabsContent value="eb" className="mt-6">
             <Card>
               <CardHeader>
@@ -141,6 +381,7 @@ export default function RegistrationPage() {
 
         <Separator className="my-12" />
 
+        {/* Communication Channels and Contact Information */}
         <div className="grid md:grid-cols-2 gap-8">
           <Card>
             <CardHeader>
@@ -267,6 +508,5 @@ export default function RegistrationPage() {
         </div>
       </div>
     </div>
-  )
+  );
 }
-

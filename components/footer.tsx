@@ -73,39 +73,29 @@ export default function Footer() {
             <div>
               <h3 className="text-lg font-semibold mb-4">Explore</h3>
               <ul className="space-y-2 text-sm">
-                {[
-                  { name: "Home", path: "/" },
-                  { name: "About", path: "/about" },
-                  { name: "Committees", path: "/committees" },
-                ].map(({ name, path }) => (
-                  <li key={name}>
-                    <Link
-                      href={path}
-                      className="text-muted-foreground hover:text-primary transition-colors duration-200"
-                    >
-                      {name}
-                    </Link>
-                  </li>
-                ))}
+                {[{ name: "Home", path: "/" }, { name: "About", path: "/about" }, { name: "Committees", path: "/committees" }].map(
+                  ({ name, path }) => (
+                    <li key={name}>
+                      <Link href={path} className="text-muted-foreground hover:text-primary transition-colors duration-200">
+                        {name}
+                      </Link>
+                    </li>
+                  )
+                )}
               </ul>
             </div>
             <div>
               <h3 className="text-lg font-semibold mb-4">Resources</h3>
               <ul className="space-y-2 text-sm">
-                {[
-                  { name: "Study Guides", path: "/resources" },
-                  { name: "Schedule", path: "/schedule" },
-                  { name: "FAQs", path: "/contact#faq" },
-                ].map(({ name, path }) => (
-                  <li key={name}>
-                    <Link
-                      href={path}
-                      className="text-muted-foreground hover:text-primary transition-colors duration-200"
-                    >
-                      {name}
-                    </Link>
-                  </li>
-                ))}
+                {[{ name: "Study Guides", path: "/resources" }, { name: "Schedule", path: "/schedule" }, { name: "FAQs", path: "/#faq" }].map(
+                  ({ name, path }) => (
+                    <li key={name}>
+                      <Link href={path} className="text-muted-foreground hover:text-primary transition-colors duration-200">
+                        {name}
+                      </Link>
+                    </li>
+                  )
+                )}
               </ul>
             </div>
           </div>
@@ -122,6 +112,7 @@ export default function Footer() {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
+                    className="placeholder:text-muted-foreground" // Lighter placeholder color
                   />
                   <Button type="submit">Subscribe</Button>
                 </div>
@@ -135,23 +126,20 @@ export default function Footer() {
             <div>
               <h4 className="text-sm font-semibold mb-3">Follow Us</h4>
               <div className="flex gap-4">
-                {[
-                  { Icon: Instagram, href: "https://instagram.com", label: "Instagram" },
-                  { Icon: Youtube, href: "https://youtube.com", label: "YouTube" },
-                  { Icon: Linkedin, href: "https://linkedin.com", label: "LinkedIn" },
-                  { Icon: Mail, href: "mailto:info@sathyabamamun.com", label: "Email" },
-                ].map(({ Icon, href, label }) => (
-                  <a
-                    key={label}
-                    href={href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={`Visit our ${label}`}
-                    className="text-muted-foreground hover:text-primary transition-colors duration-200"
-                  >
-                    <Icon className="w-6 h-6" />
-                  </a>
-                ))}
+                {[{ Icon: Instagram, href: "https://instagram.com", label: "Instagram" }, { Icon: Youtube, href: "https://youtube.com", label: "YouTube" }, { Icon: Linkedin, href: "https://linkedin.com", label: "LinkedIn" }, { Icon: Mail, href: "mailto:info@sathyabamamun.com", label: "Email" }].map(
+                  ({ Icon, href, label }) => (
+                    <a
+                      key={label}
+                      href={href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`Visit our ${label}`}
+                      className="text-muted-foreground hover:text-primary transition-colors duration-200"
+                    >
+                      <Icon className="w-6 h-6" />
+                    </a>
+                  )
+                )}
               </div>
             </div>
           </div>
@@ -161,25 +149,19 @@ export default function Footer() {
         <div className="border-t border-border pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
           <p className="text-sm text-muted-foreground">© {year || "2025"} Sathyabama MUN. All rights reserved.</p>
           <div className="flex items-center gap-2">
-            {[
-              { name: "Privacy Policy", path: "/privacy" },
-              { name: "Terms of Use", path: "/terms" },
-              { name: "FAQs", path: "/contact#faq" },
-            ].map(({ name, path }, index, arr) => (
-              <React.Fragment key={name}>
-                <Link
-                  href={path}
-                  className="text-sm text-muted-foreground hover:text-primary transition-colors duration-200"
-                >
-                  {name}
-                </Link>
-                {index < arr.length - 1 && <span className="h-4 w-px bg-border"></span>}
-              </React.Fragment>
-            ))}
+            {[{ name: "Privacy Policy", path: "/privacy" }, { name: "Terms of Use", path: "/terms" }, { name: "FAQs", path: "/app/page.tsx" }].map(
+              ({ name, path }, index, arr) => (
+                <React.Fragment key={name}>
+                  <Link href={path} className="text-sm text-muted-foreground hover:text-primary transition-colors duration-200">
+                    {name}
+                  </Link>
+                  {index < arr.length - 1 && <span className="h-4 w-px bg-border"></span>}
+                </React.Fragment>
+              )
+            )}
           </div>
         </div>
       </div>
     </footer>
   )
 }
-

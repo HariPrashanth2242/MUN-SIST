@@ -76,7 +76,8 @@ export default function Home() {
       <ImageGallery />
 
       {/* FAQ Section */}
-      <ImprovedFAQ />
+      <div id='faq'><ImprovedFAQ /></div>
+      
 
       {/* CTA Section */}
       <CTASection />
