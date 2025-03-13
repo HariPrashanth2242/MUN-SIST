@@ -9,12 +9,12 @@ import { Menu, ChevronDown } from "lucide-react"
 import { Logo } from "@/components/logo"
 
 const committees = [
-  { name: "UNGA", href: "/committees#unga", description: "United Nations General Assembly" },
-  { name: "UNHRC", href: "/committees#unhrc", description: "UN Human Rights Council" },
-  { name: "UNCSW", href: "/committees#uncsw", description: "Commission on Status of Women" },
-  { name: "Crisis Committee", href: "/committees#crisis", description: "A New Matriarchal World Order" },
-  { name: "IPC", href: "/committees#ipc", description: "International Press Corps" },
-]
+  { name: "UNGA", href: "/committees?value=unga", description: "United Nations General Assembly" },
+  { name: "UNHRC", href: "/committees?value=unhrc", description: "UN Human Rights Council" },
+  { name: "UNCSW", href: "/committees?value=uncsw", description: "Commission on Status of Women" },
+  { name: "Crisis Committee", href: "/committees?value=crisis", description: "A New Matriarchal World Order" },
+  { name: "IPC", href: "/committees?value=ipc", description: "International Press Corps" },
+];
 
 const resources = [
   { name: "Study Guides", href: "/resources?value=study-guides", description: "Comprehensive background guides" },
