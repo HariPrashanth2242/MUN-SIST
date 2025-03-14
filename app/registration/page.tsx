@@ -137,7 +137,7 @@ export default function RegistrationPage() {
                   <div className="flex items-center gap-2 mb-2">
                     <p className="font-medium">Important Notes:</p>
                     <Badge variant="outline" className="bg-primary/10 text-primary">
-                      Deadline: March 1, 2025
+                      Deadline: March 18, 2025
                     </Badge>
                   </div>
                   <ul className="list-disc pl-5 mt-2 space-y-1">
@@ -273,7 +273,7 @@ export default function RegistrationPage() {
     <h2 className="text-lg font-semibold mt-8">Section 2: Committee Preferences</h2>
 
     {/* Agenda */}
-    <div className="p-6 border-l-4 border-blue-600 bg-blue-50 text-blue-800 rounded-md">
+    <div className="p-6 border-l-4 border-primary bg-primary/20 text-black rounded-md">
       <p className="font-semibold text-lg">Agenda:</p>
       <ul className="list-disc ml-4 text-sm">
         <li><strong>UNGA:</strong> Debating the future of international law in addressing neo-imperialism and economic exploitation.</li>
@@ -336,7 +336,7 @@ export default function RegistrationPage() {
   <h2 className="text-lg font-semibold">Section 3: Country Preferences</h2>
 
 {/* Country Matrix Information */}
-<div className="p-4 border-l-4 border-blue-600 bg-blue-50 text-blue-800">
+<div className="p-4 border-l-4 border-primary bg-primary/20 text-black rounded-md">
   <p className="font-semibold">Important Information:</p>
   <p>Kindly ensure that you go through the country portfolio/matrix before filling your country preferences.</p>
   <p><a href="https://docs.google.com/spreadsheets/d/1hrrm61R25ZJFPaxGm6Cd_0qH3WbbTNw-fxSh_V0dWH4/edit?usp=drivesdk" target="_blank" className="underline text-blue-600">Country Matrix Link</a></p>
@@ -422,7 +422,7 @@ export default function RegistrationPage() {
     <h2 className="text-lg font-semibold mt-8">Section 4: Experience Details</h2>
 
     {/* Experience Information */}
-    <div className="p-6 border-l-4 border-blue-600 bg-blue-50 text-primary-800 rounded-md">
+    <div className="p-6 border-l-4 border-primary bg-primary/20 text-primary-800 rounded-md">
       <p className="font-semibold text-lg">Kindly ensure that you answer these questions accurately for the facilitation of the MOCK MUN training session.</p>
     </div>
 
