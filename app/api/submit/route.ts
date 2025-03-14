@@ -6,6 +6,7 @@ export async function POST(req: Request) {
     const formData = await req.formData();
     const data: Record<string, string> = {};
     formData.forEach((value, key) => (data[key] = value.toString()));
+
     // ✅ 2. Check required fields
     if (!data["entry.2058220784"] || !data["entry.1693362767"]) {
       console.error("❌ Missing required fields!");
@@ -19,15 +20,20 @@ export async function POST(req: Request) {
     const googleFormURL =
       "https://docs.google.com/forms/d/e/1FAIpQLScNJhGtcfiscV4-r553336JR8XbZgzLCnYHYuTquh0pUUEt-Q/formResponse";
 
-    // ✅ 4. Submit Form
-    await fetch(googleFormURL, {
+    // ✅ 4. Submit the form (no need for no-cors)
+    const response = await fetch(googleFormURL, {
       method: "POST",
       body: params,
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      mode: "no-cors",
     });
 
-    return NextResponse.json({ message: "Form submitted successfully" });
+    // ✅ 5. Check for a successful submission
+    if (response.ok) {
+      return NextResponse.json({ message: "Form submitted successfully" });
+    } else {
+      console.error("❌ Failed to submit form:", response.statusText);
+      return NextResponse.json({ message: "Failed to submit form", error: response.statusText }, { status: 500 });
+    }
   } catch (error) {
     return NextResponse.json({ message: "Error submitting form", error: error.message }, { status: 500 });
   }
