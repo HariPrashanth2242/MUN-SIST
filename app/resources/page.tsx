@@ -210,7 +210,7 @@ export default function ResourcesPage() {
                     </div>
                     <div className="mt-2 sm:mt-0 sm:ml-4">
                       <Button variant="outline" size="sm" asChild>
-                        <Link href="https://drive.google.com/file" target="_blank" rel="noopener noreferrer">
+                        <Link href="POSITION PAPER GUIDELINES .pdf" target="_blank" rel="noopener noreferrer">
                           <Download className="h-4 w-4 mr-1" />
                           Download
                         </Link>
@@ -234,7 +234,7 @@ export default function ResourcesPage() {
                     </div>
                     <div className="mt-2 sm:mt-0 sm:ml-4">
                       <Button variant="outline" size="sm" asChild>
-                        <Link href="https://drive.google.com/file" target="_blank" rel="noopener noreferrer">
+                        <Link href="Sample Position Paper-UNGA.pdf" target="_blank" rel="noopener noreferrer">
                           <Download className="h-4 w-4 mr-1" />
                           Download
                         </Link>
@@ -258,7 +258,7 @@ export default function ResourcesPage() {
                     </div>
                     <div className="mt-2 sm:mt-0 sm:ml-4">
                       <Button variant="outline" size="sm" asChild>
-                        <Link href="https://drive.google.com/file" target="_blank" rel="noopener noreferrer">
+                        <Link href="UNHRC_SAMPLEPOSITION.pdf" target="_blank" rel="noopener noreferrer">
                           <Download className="h-4 w-4 mr-1" />
                           Download
                         </Link>
@@ -346,7 +346,7 @@ export default function ResourcesPage() {
                   asChild
                 >
                   <Link
-                    href="https://drive.google.com/file"
+                    href="Beginner's_GUIDE.pdf"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center"

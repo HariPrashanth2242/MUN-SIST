@@ -213,8 +213,11 @@ Stay connected with the organizing team and fellow delegates for instant updates
                 <Phone className="h-10 w-10 text-primary mb-4" />
                 <h3 className="text-xl font-semibold mb-2">Phone</h3>
                 <p className="text-muted-foreground mb-4">For urgent matters requiring immediate attention</p>
-                <Link href="tel:+919876543210" className="text-primary hover:underline">
-                  +91 9876543210
+                <Link href="tel:+91 78930 93723" className="text-primary hover:underline">
+                +91 78930 93723
+                </Link>
+                <Link href="tel:+91 9962992419" className="text-primary hover:underline">
+                +91 99629 92419
                 </Link>
               </CardContent>
             </Card>
@@ -242,8 +245,9 @@ Stay connected with the organizing team and fellow delegates for instant updates
       <div className="container py-12">
         <div className="max-w-4xl mx-auto">
           <div className="mb-12">
-            <h2 className="text-2xl font-semibold mb-6">Meet the Organizing Team</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+            <h2 className="flex flex-col items-center text-center text-2xl font-semibold mb-6">Meet the Organizing Team</h2>
+            
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-6">
               <Card>
                 <CardContent className="p-6">
                   <div className="flex flex-col items-center text-center">
@@ -256,8 +260,8 @@ Stay connected with the organizing team and fellow delegates for instant updates
                     </div>
                     <h3 className="font-semibold">Anish Inti</h3>
                     <p className="text-sm text-muted-foreground mb-2">Secretary General</p>
-                    <Link href="mailto:sg@sathyabamamun.com" className="text-primary text-sm hover:underline">
-                      sg@sathyabamamun.com
+                    <Link href="mailto:Munianish076@gmail.com" className="text-primary text-sm hover:underline">
+                    Munianish076@gmail.com
                     </Link>
                   </div>
                 </CardContent>
@@ -275,31 +279,14 @@ Stay connected with the organizing team and fellow delegates for instant updates
                     </div>
                     <h3 className="font-semibold">thaarani</h3>
                     <p className="text-sm text-muted-foreground mb-2">Deputy Secretary General</p>
-                    <Link href="mailto:dg@sathyabamamun.com" className="text-primary text-sm hover:underline">
-                      dg@sathyabamamun.com
+                    <Link href="mailto:natureschild139@gmail.com" className="text-primary text-sm hover:underline">
+                    natureschild139@gmail.com
                     </Link>
                   </div>
                 </CardContent>
               </Card>
 
-              <Card>
-                <CardContent className="p-6">
-                  <div className="flex flex-col items-center text-center">
-                    <div className="w-24 h-24 rounded-full bg-muted mb-4 overflow-hidden">
-                      <img
-                        src="/geeky.svg?height=100&width=100"
-                        alt="Under-Secretary General"
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                    <h3 className="font-semibold">Rahul Menon</h3>
-                    <p className="text-sm text-muted-foreground mb-2">Under-Secretary General</p>
-                    <Link href="mailto:usg@sathyabamamun.com" className="text-primary text-sm hover:underline">
-                      usg@sathyabamamun.com
-                    </Link>
-                  </div>
-                </CardContent>
-              </Card>
+              
             </div>
           </div>
 
