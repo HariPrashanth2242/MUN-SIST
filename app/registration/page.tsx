@@ -78,9 +78,7 @@ export default function RegistrationPage() {
       });
       if (response.ok) {
         setIsFormSubmitted(true);
-    } else {
-        alert("Failed to submit form.");
-    }
+    } 
 } catch (error) {
     console.error("Error submitting form:", error);
 } finally {
@@ -101,7 +99,7 @@ export default function RegistrationPage() {
         </p>
 
         <Tabs defaultValue="delegate" className="w-full">
-          <TabsList className="grid w-full grid-cols-2 auto-rows-fr min-h-[3.5rem]">
+        <TabsList className="grid w-full grid-cols-2 auto-rows-fr min-h-[3.5rem]">
             <TabsTrigger value="delegate" className="text-center break-words whitespace-normal">
               Delegate Registration
             </TabsTrigger>
@@ -109,6 +107,7 @@ export default function RegistrationPage() {
               Executive Board Application
             </TabsTrigger>
           </TabsList>
+
 
           <TabsContent value="delegate" className="mt-6">
             <Card>
@@ -427,8 +426,8 @@ export default function RegistrationPage() {
       <p className="font-semibold text-lg">Kindly ensure that you answer these questions accurately for the facilitation of the MOCK MUN training session.</p>
     </div>
 
-    <div className="space-y-6 mt-6">
-      <label className="block text-sm font-medium">Have you participated in MUN before?</label>
+    <div className="space-y-6 mt-6 font-semibold">
+      <label className="block text-sm">Have you participated in MUN before?</label>
       <Select 
         name="entry.1738054312"
         required 
@@ -444,7 +443,7 @@ export default function RegistrationPage() {
         </SelectContent>
       </Select>
 
-      <label className="block text-sm font-medium">Previous MUN Experiences</label>
+      <label className="block text-sm font-semibold">Previous MUN Experiences</label>
       <Input
         type="text"
         name="entry.436128629"
@@ -452,7 +451,7 @@ export default function RegistrationPage() {
         placeholder="Enter details of your previous MUN experiences (if any)"
       />
 
-      <label className="block text-sm font-medium">Previous MUN Wins</label>
+      <label className="block text-sm font-semibold">Previous MUN Wins</label>
       <Input
         type="text"
         name="entry.1967484251"
@@ -479,9 +478,9 @@ export default function RegistrationPage() {
 
 
 </form>):(
- <div className="p-4 w-full max-w-md md:max-w-lg lg:max-w-xl border-l-4 border-green-600 bg-green-50 text-green-800 rounded-md shadow-md mx-auto">
- <p className="font-semibold text-lg md:text-xl leading-relaxed">
-   Thank you for registering! We appreciate your interest.
+ <div className="p-4 w-full border-l-4 border-green-600 bg-green-50 text-green-800 rounded-md">
+ <p className="font-semibold text-lg text-center whitespace-nowrap">
+   Thank you for registering! We appreciate your interest and look forward to your participation.
  </p>
 </div>
 
@@ -502,7 +501,7 @@ export default function RegistrationPage() {
 
 
           <TabsContent value="eb" className="mt-6">
-            <Card>
+          <Card>
               <CardHeader>
                 <div className="flex items-center justify-between">
                   <CardTitle>Executive Board Application</CardTitle>
@@ -664,7 +663,7 @@ export default function RegistrationPage() {
                     <rect width="20" height="16" x="2" y="4" rx="2" />
                     <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
                   </svg>
-                  <span>Munianish076@gmail.com</span>
+                  <span>info@sathyabamamun.com</span>
                 </div>
                 <div className="flex items-center">
                   <svg
@@ -681,27 +680,19 @@ export default function RegistrationPage() {
                   >
                     <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
                   </svg>
-                  <span>+9962992419</span>
+                  <span>+91 9876543210</span>
                 </div>
               </div>
               <Button className="w-full mt-4" asChild>
-  <Link
-    href="/contact#inquiry" passHref
-  >
-    <span className="flex items-center justify-center">
-      <ExternalLink className="mr-2 h-4 w-4" />
-      Submit an Inquiry
-    </span>
-  </Link>
-</Button>
-
-
-
+                <Link href="https://forms.google.com" target="_blank" rel="noopener noreferrer">
+                  <ExternalLink className="mr-2 h-4 w-4" />
+                  Submit an Inquiry
+                </Link>
+              </Button>
             </CardContent>
           </Card>
         </div>
       </div>
     </div>
-  )
   )
 }
