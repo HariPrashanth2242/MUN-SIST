@@ -10,25 +10,25 @@ import { ChevronRight } from "lucide-react"
 
 const images = [
   {
-    src: "/placeholder.svg?height=1080&width=1920",
+    src: "/flag.jpg?height=1080&width=1920",
     alt: "UN Assembly Hall",
     title: "Redefining Power",
     subtitle: "Shape global policies and diplomatic relations",
   },
   {
-    src: "/placeholder.svg?height=1080&width=1920",
+    src: "/uns.jpg?height=1080&width=1920",
     alt: "Delegates in discussion",
     title: "Reshaping Narratives",
     subtitle: "Challenge existing paradigms with innovative solutions",
   },
   {
-    src: "/placeholder.svg?height=1080&width=1920",
+    src: "/gang.jpg?height=1080&width=1920",
     alt: "Committee session",
     title: "Building Tomorrow",
     subtitle: "Collaborate with future leaders and changemakers",
   },
   {
-    src: "/placeholder.svg?height=1080&width=1920",
+    src: "/llast.jpg?height=1080&width=1920",
     alt: "Opening ceremony",
     title: "Creating Impact",
     subtitle: "Make your voice heard on the international stage",
@@ -122,7 +122,7 @@ export function ImprovedHero() {
                 className="text-lg px-8 bg-white/10 hover:bg-white/20 text-white border-white/20"
                 asChild
               >
-                <Link href="/resources">Download Study Guides</Link>
+                <Link href="/resources">Download Resources</Link>
               </Button>
             </motion.div>
           </motion.div>
@@ -135,7 +135,7 @@ export function ImprovedHero() {
           >
             <div className="relative w-full max-w-md aspect-square rounded-2xl overflow-hidden border-4 border-white/20 shadow-2xl">
               <Image
-                src="/placeholder.svg?height=800&width=800"
+                src="/main.png?height=800&width=800"
                 alt="Sathyabama MUN 2025"
                 fill
                 className="object-cover"

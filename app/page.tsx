@@ -40,8 +40,8 @@ export default function Home() {
             <Card className="border-none shadow-md hover:shadow-lg transition-shadow rounded-xl">
               <CardContent className="p-6 flex flex-col items-center text-center">
                 <Globe className="h-12 w-12 text-primary mb-4" />
-                <h3 className="text-xl font-semibold mb-2">4 Committees</h3>
-                <p className="text-muted-foreground">UNGA, UNHRC, UNCSW, and Crisis Committee</p>
+                <h3 className="text-xl font-semibold mb-2">5 Committees</h3>
+                <p className="text-muted-foreground">UNGA, UNHRC, UNCSW, Crisis and IPC Committee</p>
               </CardContent>
             </Card>
 

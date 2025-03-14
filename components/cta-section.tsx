@@ -53,11 +53,11 @@ export function CTASection() {
                     </li>
                     <li className="flex justify-between">
                       <span className="text-muted-foreground">Registration Deadline:</span>
-                      <span className="font-medium">March 1, 2025</span>
+                      <span className="font-medium">March 18, 2025</span>
                     </li>
                     <li className="flex justify-between">
                       <span className="text-muted-foreground">Position Paper Due:</span>
-                      <span className="font-medium">March 15, 2025</span>
+                      <span className="font-medium">March 23, 2025</span>
                     </li>
                     <li className="flex justify-between">
                       <span className="text-muted-foreground">Conference Dates:</span>

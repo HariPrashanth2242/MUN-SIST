@@ -26,7 +26,7 @@ export default function AboutPage() {
             </div>
             <div className="relative h-64 rounded-lg overflow-hidden">
               <Image
-                src="/placeholder.svg?height=400&width=600"
+                src="/about1.svg?height=400&width=600"
                 alt="Model United Nations Session"
                 fill
                 className="object-cover"
@@ -42,7 +42,7 @@ export default function AboutPage() {
           <div className="grid md:grid-cols-2 gap-8 items-center">
             <div className="order-2 md:order-1 relative h-64 rounded-lg overflow-hidden">
               <Image
-                src="/placeholder.svg?height=400&width=600"
+                src="/about2.svg?height=400&width=600"
                 alt="Sathyabama Campus"
                 fill
                 className="object-cover"
@@ -69,23 +69,36 @@ export default function AboutPage() {
           <h2 className="text-2xl font-semibold mb-6">Message from the Secretariat</h2>
           <Card>
             <CardContent className="p-6">
-              <blockquote className="border-l-4 border-primary pl-4 italic">
-                <p className="text-muted-foreground mb-4">
-                  "On behalf of the entire organizing team, I am thrilled to welcome you to the first edition of
-                  Sathyabama Model United Nations. In a world facing unprecedented challenges, the need for diplomatic
-                  dialogue and collaborative problem-solving has never been more critical.
-                </p>
-                <p className="text-muted-foreground mb-4">
-                  Our theme, 'Redefining Power & Reshaping Narratives,' invites delegates to question established
-                  paradigms and envision new frameworks for global cooperation. We have designed this conference to be
-                  both intellectually stimulating and practically enriching.
-                </p>
-                <p className="text-muted-foreground">
-                  Whether you are a seasoned MUN participant or a first-timer, we promise you an unforgettable
-                  experience of debate, diplomacy, and discovery. We look forward to welcoming you to our campus in
-                  March 2025."
-                </p>
-              </blockquote>
+            <blockquote className="border-l-4 border-primary pl-4 italic">
+  <p className="text-muted-foreground mb-4">
+    "THIS IS THE INAUGURAL EDITION OF OUR COLLEGE’S MUN."
+  </p>
+
+  <p className="text-muted-foreground mb-4">
+    Although it seems sudden, this has been my dream since day one of my college life—to bring Model United Nations to our college.
+  </p>
+
+  <p className="text-muted-foreground mb-4">
+    This MUN is meant to cultivate your critical thinking skills and intuition and, more than anything, help you understand what is happening in the world.
+  </p>
+
+  <p className="text-muted-foreground mb-4">
+    Most of you are beginners, but don’t fret—first times are always hard, but the next time will be easier. Have hope and do well.
+  </p>
+
+  <p className="text-muted-foreground mb-4">
+    As you will hear soon—research and give it your all! That’s the only thing that matters. Whether you lose or win, it doesn’t matter, as long as you know you gave it your all.
+  </p>
+
+  <p className="text-muted-foreground mb-4">
+    With that, I wish each and every one of you all the best.
+  </p>
+
+  <p className="text-muted-foreground">
+    See you, my delegates!
+  </p>
+</blockquote>
+
               <div className="mt-4 flex items-center">
                 <div className="relative h-12 w-12 rounded-full overflow-hidden mr-4">
                   <Image
@@ -97,6 +110,49 @@ export default function AboutPage() {
                 </div>
                 <div>
                   <p className="font-semibold">Anish Inti</p>
+                  <p className="text-sm text-muted-foreground">Secretary General, Sathyabama MUN 2025</p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </section>
+        <Separator className="my-8" />
+
+        <section>
+          <h2 className="text-2xl font-semibold mb-6">Message from the Deputy Secretary General</h2>
+          <Card>
+            <CardContent className="p-6">
+            <blockquote className="border-l-4 border-primary pl-4 italic">
+  <p className="text-muted-foreground mb-4">
+    "On behalf of the entire organizing team, I am thrilled to welcome you to the first edition of
+    Sathyabama Model United Nations. In a world facing unprecedented challenges, the need for diplomatic
+    dialogue and collaborative problem-solving has never been more critical."
+  </p>
+
+  <p className="text-muted-foreground mb-4">
+    Our theme, 'Redefining Power & Reshaping Narratives,' invites delegates to question established
+    paradigms and envision new frameworks for global cooperation. We have designed this conference to be
+    both intellectually stimulating and practically enriching.
+  </p>
+
+  <p className="text-muted-foreground mb-4">
+    Whether you are a seasoned MUN participant or a first-timer, we promise you an unforgettable
+    experience of debate, diplomacy, and discovery. We look forward to your presence in becoming a part of
+    Sathyabama's history."
+  </p>
+</blockquote>
+
+              <div className="mt-4 flex items-center">
+                <div className="relative h-12 w-12 rounded-full overflow-hidden mr-4">
+                  <Image
+                    src="/deputy.svg?height=100&width=100"
+                    alt="Deputy Secretary General"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <div>
+                  <p className="font-semibold">Thaarani</p>
                   <p className="text-sm text-muted-foreground">Secretary General, Sathyabama MUN 2025</p>
                 </div>
               </div>

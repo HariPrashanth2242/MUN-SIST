@@ -101,9 +101,13 @@ export default function RegistrationPage() {
         </p>
 
         <Tabs defaultValue="delegate" className="w-full">
-          <TabsList className="grid w-full grid-cols-2">
-            <TabsTrigger value="delegate">Delegate Registration</TabsTrigger>
-            <TabsTrigger value="eb">Executive Board Application</TabsTrigger>
+          <TabsList className="grid w-full grid-cols-2 auto-rows-fr min-h-[3.5rem]">
+            <TabsTrigger value="delegate" className="text-center break-words whitespace-normal">
+              Delegate Registration
+            </TabsTrigger>
+            <TabsTrigger value="eb" className="text-center break-words whitespace-normal">
+              Executive Board Application
+            </TabsTrigger>
           </TabsList>
 
           <TabsContent value="delegate" className="mt-6">
@@ -553,12 +557,10 @@ export default function RegistrationPage() {
                 </div>
               </CardContent>
               <CardFooter>
-                <Button className="w-full" asChild>
-                  <Link href="https://forms.google.com" target="_blank" rel="noopener noreferrer">
-                    <ExternalLink className="mr-2 h-4 w-4" />
-                    Apply for Executive Board
-                  </Link>
-                </Button>
+              <div className="p-3 border-l-4 w-full border-red-600 bg-red-50 text-red-800 rounded-md">
+    <p className="font-semibold text-lg text-center justify-center">Registrations Closed !</p>
+
+  </div>
               </CardFooter>
             </Card>
           </TabsContent>
@@ -662,7 +664,7 @@ export default function RegistrationPage() {
                     <rect width="20" height="16" x="2" y="4" rx="2" />
                     <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
                   </svg>
-                  <span>info@sathyabamamun.com</span>
+                  <span>Munianish076@gmail.com</span>
                 </div>
                 <div className="flex items-center">
                   <svg
@@ -679,19 +681,27 @@ export default function RegistrationPage() {
                   >
                     <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
                   </svg>
-                  <span>+91 9876543210</span>
+                  <span>+9962992419</span>
                 </div>
               </div>
               <Button className="w-full mt-4" asChild>
-                <Link href="https://forms.google.com" target="_blank" rel="noopener noreferrer">
-                  <ExternalLink className="mr-2 h-4 w-4" />
-                  Submit an Inquiry
-                </Link>
-              </Button>
+  <Link
+    href="/contact#inquiry" passHref
+  >
+    <span className="flex items-center justify-center">
+      <ExternalLink className="mr-2 h-4 w-4" />
+      Submit an Inquiry
+    </span>
+  </Link>
+</Button>
+
+
+
             </CardContent>
           </Card>
         </div>
       </div>
     </div>
+  )
   )
 }

@@ -8,32 +8,32 @@ import { Button } from "@/components/ui/button"
 
 const galleryImages = [
   {
-    src: "/placeholder.svg?height=600&width=800",
+    src: "/gallery1.jpg?height=600&width=800",
     alt: "Previous MUN Conference",
     caption: "Delegates in session during last year's conference",
   },
   {
-    src: "/placeholder.svg?height=600&width=800",
+    src: "/gallery2.jpg?height=600&width=800",
     alt: "Committee Discussion",
     caption: "Engaging in diplomatic negotiations",
   },
   {
-    src: "/placeholder.svg?height=600&width=800",
+    src: "/gallery3.jpg?height=600&width=800",
     alt: "Award Ceremony",
     caption: "Recognizing outstanding delegates",
   },
   {
-    src: "/placeholder.svg?height=600&width=800",
+    src: "/gallery4.jpg?height=600&width=800",
     alt: "Opening Ceremony",
     caption: "The grand opening of our previous conference",
   },
   {
-    src: "/placeholder.svg?height=600&width=800",
+    src: "/gallery5.jpg?height=600&width=800",
     alt: "Networking Session",
     caption: "Building connections between sessions",
   },
   {
-    src: "/placeholder.svg?height=600&width=800",
+    src: "/gallery6.jpg?height=600&width=800",
     alt: "Panel Discussion",
     caption: "Expert panel sharing insights",
   },
