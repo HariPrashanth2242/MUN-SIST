@@ -100,9 +100,9 @@ export default function CommitteesPage() {
               </CardContent>
 <CardFooter className="grid sm:grid-cols-2 gap-3 md:flex md:justify-between items-center p-4 bg-gray-100">
   <Button variant="outline" asChild className="flex items-center justify-start sm:mb-2 md:mb-0">
-    <Link href="https://drive.google.com/file" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center">
+  <Link href="/resources" passHref  className="flex items-center justify-center"> 
       <Download className="mr-2 h-4 w-4" />
-      Study Guide
+      Study Guide 
     </Link>
   </Button>
   <Button asChild className="flex items-center justify-center">
@@ -159,9 +159,9 @@ export default function CommitteesPage() {
               </CardContent>
               <CardFooter className="grid sm:grid-cols-2 gap-3 md:flex md:justify-between items-center p-4 bg-gray-100">
   <Button variant="outline" asChild className="flex items-center justify-start sm:mb-2 md:mb-0">
-    <Link href="https://drive.google.com/file" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center">
+  <Link href="/resources" passHref  className="flex items-center justify-center"> 
       <Download className="mr-2 h-4 w-4" />
-      Study Guide
+      Study Guide 
     </Link>
   </Button>
   <Button asChild className="flex items-center justify-center">
@@ -214,10 +214,10 @@ export default function CommitteesPage() {
               </CardContent>
               <CardFooter className="grid sm:grid-cols-2 gap-3 md:flex md:justify-between items-center p-4 bg-gray-100">
   <Button variant="outline" asChild className="flex items-center justify-start sm:mb-2 md:mb-0">
-    <Link href="https://drive.google.com/file" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center">
+  <Link href="/resources" passHref  className="flex items-center justify-center"> 
       <Download className="mr-2 h-4 w-4" />
-      Study Guide
-    </Link>
+      Study Guide 
+     </Link> 
   </Button>
   <Button asChild className="flex items-center justify-center">
     <Link href="/registration">Register for UNCSW</Link>
@@ -271,10 +271,10 @@ export default function CommitteesPage() {
               </CardContent>
               <CardFooter className="grid sm:grid-cols-2 gap-3 md:flex md:justify-between items-center p-4 bg-gray-100">
   <Button variant="outline" asChild className="flex items-center justify-start sm:mb-2 md:mb-0">
-    <Link href="https://drive.google.com/file" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center">
+     <Link href="/resources" passHref  className="flex items-center justify-center"> 
       <Download className="mr-2 h-4 w-4" />
-      Study Guide
-    </Link>
+      Study Guide 
+     </Link> 
   </Button>
   <Button asChild className="flex items-center justify-center">
     <Link href="/registration">Register for Crisis</Link>
@@ -326,10 +326,10 @@ export default function CommitteesPage() {
               </CardContent>
               <CardFooter className="grid sm:grid-cols-2 gap-3 md:flex md:justify-between items-center p-4 bg-gray-100">
   <Button variant="outline" asChild className="flex items-center justify-start sm:mb-2 md:mb-0">
-    <Link href="https://drive.google.com/file" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center">
+  <Link href="/resources" passHref  className="flex items-center justify-center"> 
       <Download className="mr-2 h-4 w-4" />
-      Press Guidelines
-    </Link>
+      Press Guidelines 
+     </Link> 
   </Button>
   <Button asChild className="flex items-center justify-center">
     <Link href="/registration">Register for IPC</Link>
@@ -341,18 +341,22 @@ export default function CommitteesPage() {
         </Tabs>
 
         <div className="mt-12 p-6 bg-muted rounded-lg">
-          <h2 className="text-2xl font-semibold mb-4">Study Guides & Resources</h2>
-          <p className="mb-4">
-            All committee study guides are available for download. These comprehensive documents provide essential
-            background information, key questions to consider, and research guidance to help you prepare effectively.
-          </p>
-          <Button asChild>
-            <Link href="https://drive.google.com/drive/folders" target="_blank" rel="noopener noreferrer">
-              <ExternalLink className="mr-2 h-4 w-4" />
-              Access All Study Guides
-            </Link>
-          </Button>
-        </div>
+  <h2 className="text-2xl font-semibold mb-4">Study Guides & Resources</h2>
+  <p className="mb-4">
+    All committee study guides are available for download. These comprehensive documents provide essential
+    background information, key questions to consider, and research guidance to help you prepare effectively.
+  </p>
+  <Button asChild>
+    <Link href="/resources" passHref>
+      <span className="flex items-center justify-center">
+        <ExternalLink className="mr-2 h-4 w-4" />
+        Access All Study Guides
+      </span>
+    </Link>
+  </Button>
+</div>
+
+
       </div>
     </div>
   )

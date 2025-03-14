@@ -17,12 +17,12 @@ const committees = [
 ];
 
 const resources = [
-  { name: "Study Guides", href: "/resources?value=study-guides", description: "Comprehensive background guides" },
-  {
-    name: "Rules of Procedure",
-    href: "/resources?value=rules",
-    description: "Official guidelines for committee proceedings",
-  },
+  // { name: "Study Guides", href: "/resources?value=study-guides", description: "Comprehensive background guides" },
+  // {
+  //   name: "Rules of Procedure",
+  //   href: "/resources?value=rules",
+  //   description: "Official guidelines for committee proceedings",
+  // },
   { name: "Position Papers", href: "/resources?value=position-papers", description: "Guidelines and samples" },
   {
     name: "Beginner's Guide",

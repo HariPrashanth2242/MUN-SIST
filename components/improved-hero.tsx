@@ -122,7 +122,7 @@ export function ImprovedHero() {
                 className="text-lg px-8 bg-white/10 hover:bg-white/20 text-white border-white/20"
                 asChild
               >
-                <Link href="/resources">Download Study Guides</Link>
+                <Link href="/resources">Download Resources</Link>
               </Button>
             </motion.div>
           </motion.div>
