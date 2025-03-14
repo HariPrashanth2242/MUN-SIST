@@ -1,3 +1,7 @@
+"use client"; // Ensure this is at the top
+
+import { useState, useEffect } from "react";
+ 
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
@@ -5,8 +9,88 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { ExternalLink, Send, MessageSquare } from "lucide-react"
 import { Separator } from "@/components/ui/separator"
 import { Badge } from "@/components/ui/badge"
+import { Input } from "@/components/ui/input"; 
+import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/select";
+
+// Add this helper function at the top of your component
+const createRadioInput = (name: string, value: string, label: string) => {
+  const form = document.querySelector('form');
+  if (form) {
+    // Check if the radio button already exists
+    let existingInput = form.querySelector(`input[name="${name}"][value="${value}"]`);
+
+    if (!existingInput) {
+      const radioDiv = document.createElement('div');
+      radioDiv.role = 'radiogroup';
+      radioDiv.setAttribute('aria-label', label);
+
+      const input = document.createElement('input');
+      input.type = 'radio';
+      input.name = name;
+      input.value = value;
+      input.checked = true;
+      input.required = true;
+      input.setAttribute('aria-label', value);
+
+      radioDiv.appendChild(input);
+      form.appendChild(radioDiv);
+    }
+  }
+};
 
 export default function RegistrationPage() {
+  const [selectedCommittee1, setSelectedCommittee1] = useState("");
+  const [enrolled, setEnrolled] = useState("");
+  const [selectedCommittee2, setSelectedCommittee2] = useState("");
+  const [selectedDepartment, setSelectedDepartment] = useState("");
+  const [selected, setSelected] = useState("");
+  const [selectedYear, setSelectedYear] = useState("");
+  const [submitted, setSubmitted] = useState(false);
+  const [activeSection, setActiveSection] = useState(1);
+  const [step, setStep] = useState(1);
+  const totalSteps = 4;
+
+  // Add loading state
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  // Add dlut state
+  const [dlutValue, setDlutValue] = useState("");
+
+  // Update useEffect to set dlut when component mounts
+  useEffect(() => {
+    setDlutValue(Date.now().toString());
+  }, []);
+
+  const nextStep = () => setStep((prev) => (prev < totalSteps ? prev + 1 : prev));
+  const prevStep = () => setStep((prev) => (prev > 1 ? prev - 1 : prev));
+  const [isFormSubmitted, setIsFormSubmitted] = useState(false);
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+  
+    const formData = new FormData(e.currentTarget);
+    formData.delete("dlut");
+    
+    try {
+      const response = await fetch("/api/submit", {
+        method: "POST",
+        body: new URLSearchParams(formData as any),
+      });
+      if (response.ok) {
+        setIsFormSubmitted(true);
+    } else {
+        alert("Failed to submit form.");
+    }
+} catch (error) {
+    console.error("Error submitting form:", error);
+} finally {
+    setIsSubmitting(false);
+}
+  };
+
+
+
+
   return (
     <div className="container py-12">
       <div className="max-w-4xl mx-auto">
@@ -61,19 +145,358 @@ export default function RegistrationPage() {
                   </ul>
                 </div>
               </CardContent>
-              <CardFooter>
-                <Button className="w-full" asChild>
-                  <Link href="https://forms.google.com" target="_blank" rel="noopener noreferrer">
-                    <ExternalLink className="mr-2 h-4 w-4" />
-                    Register as Delegate
-                  </Link>
-                </Button>
-              </CardFooter>
+  <CardFooter>
+  {/* Form */}
+  <div>
+        {!isFormSubmitted ? (
+<form 
+    method="POST"
+    onSubmit={handleSubmit}
+    target="hidden_iframe" // Prevent redirect and submit through iframe
+  
+  className="w-full space-y-8"
+>
+  {/* Form sections */}
+  <div className="space-y-6">
+    {/* Section 1 */}
+    <h2 className="text-lg font-semibold mt-8">Section 1: Personal Details</h2>
+
+    <div className="space-y-6">
+  {/* Full Name */}
+  <label className="block text-sm font-medium">
+    Full Name with Initial <span className="text-red-500">*</span>
+  </label>
+  <Input
+    type="text"
+    name="entry.2058220784"
+    required
+    className="w-full p-4 border rounded-md"
+    placeholder="Enter your full name with initial"
+  />
+
+  {/* Email ID */}
+  <label className="block text-sm font-medium">
+    Email ID <span className="text-red-500">*</span>
+  </label>
+  <Input
+    type="email"
+    name="entry.1693362767"
+    required
+    className="w-full p-4 border rounded-md"
+    placeholder="Enter your email address"
+  />
+
+  {/* Contact Number */}
+  <label className="block text-sm font-medium">
+    Contact Number (WhatsApp number, preferably) <span className="text-red-500">*</span>
+  </label>
+  <Input
+    type="tel"
+    name="entry.2058161891"
+    required
+    className="w-full p-4 border rounded-md"
+    placeholder="Enter your WhatsApp number"
+  />
+
+  {/* Year of Study */}
+  <label className="block text-sm font-medium">
+    Year of Study <span className="text-red-500">*</span>
+  </label>
+  <Select 
+    name="entry.850580514"
+    required 
+    defaultValue="" 
+    onValueChange={(value) => setSelectedYear(value)}
+  >
+    <SelectTrigger className={`w-full p-4 border rounded-md ${selectedYear ? "text-black" : "text-gray-400"}`}>
+      <SelectValue placeholder="Select Year of Study" />
+    </SelectTrigger>
+    <SelectContent>
+      <SelectItem value="I">I (First Year)</SelectItem>
+      <SelectItem value="II">II (Second Year)</SelectItem>
+      <SelectItem value="III">III (Third Year)</SelectItem>
+      <SelectItem value="IV">IV (Fourth Year)</SelectItem>
+      <SelectItem value="V">V (Fifth Year)</SelectItem>
+    </SelectContent>
+  </Select>
+
+  {/* Department Selection */}
+  <label className="block text-sm font-medium">
+  Department <span className="text-red-500">*</span>
+</label>
+<Input
+  type="text"
+  name="entry.141136026"
+  required
+  className="w-full p-4 border rounded-md"
+  placeholder="Enter your department"
+/>
+
+  {/* Currently Enrolled in */}
+  <label className="block text-sm font-medium">
+  Enrolled in <span className="text-red-500">*</span>
+</label>
+<Select 
+  name="entry.1583412127"
+  required 
+  defaultValue="" 
+  onValueChange={(value) => setEnrolled(value)}
+>
+  <SelectTrigger className={`w-full p-4 border rounded-md ${enrolled ? "text-black" : "text-gray-400"}`}>
+    <SelectValue placeholder="Select Enrollment Type" />
+  </SelectTrigger>
+  <SelectContent>
+    <SelectItem value="Undergraduate">Undergraduate</SelectItem>
+    <SelectItem value="Postgraduate">Postgraduate</SelectItem>
+  </SelectContent>
+</Select>
+
+<label className="block text-sm font-medium">
+    Course Name <span className="text-red-500">*</span>
+  </label>
+  <Input
+    type="text"
+    name="entry.1396454272"
+    required
+    className="w-full p-4 border rounded-md"
+    placeholder="Enter your course name"
+  />
+    </div>
+  </div>
+  
+
+  <div className="space-y-6">
+    {/* Section 2 */}
+    <h2 className="text-lg font-semibold mt-8">Section 2: Committee Preferences</h2>
+
+    {/* Agenda */}
+    <div className="p-6 border-l-4 border-blue-600 bg-blue-50 text-blue-800 rounded-md">
+      <p className="font-semibold text-lg">Agenda:</p>
+      <ul className="list-disc ml-4 text-sm">
+        <li><strong>UNGA:</strong> Debating the future of international law in addressing neo-imperialism and economic exploitation.</li>
+        <li><strong>UNHRC:</strong> Defining the limits of state power in monitoring citizens under the guise of national security.</li>
+        <li><strong>UNCSW:</strong> Bridging the gender gap: ensuring equal representation of women in leadership.</li>
+        <li><strong>CCC:</strong> Defining the ethical boundaries of humanitarian intervention in conflict zones.</li>
+      </ul>
+      <p className="mt-4 text-sm"><strong>Kindly ensure that you choose two different preferences, without repetition.</strong></p>
+    </div>
+
+    <div className="space-y-6 mt-6">
+    <label className="block text-sm font-medium">
+    Committee Preference One <span className="text-red-500">*</span>
+  </label>
+  <Select 
+    name="entry.889507807"
+    required 
+    value={selectedCommittee1}
+    onValueChange={setSelectedCommittee1}
+  >
+    <SelectTrigger className={`w-full p-4 border rounded-md ${selectedCommittee1 ? "text-black" : "text-gray-400"}`}>
+      <SelectValue placeholder="Select Committee" />
+    </SelectTrigger>
+    <SelectContent>
+      <SelectItem value="United Nations Human Rights Council (UNHRC)">United Nations Human Rights Council (UNHRC)</SelectItem>
+      <SelectItem value="United Nations General Assembly (UNGA)">United Nations General Assembly (UNGA)</SelectItem>
+      <SelectItem value="Continuous Crisis Committee (CCC)">Continuous Crisis Committee (CCC)</SelectItem>
+      <SelectItem value="United Nations Commission on Status of Women">United Nations Commission on Status of Women</SelectItem>
+      <SelectItem value="International Press (IP) - Photojournalism">International Press (IP) - Photojournalism</SelectItem>
+      <SelectItem value="International Press (IP) - Journalism">International Press (IP) - Journalism</SelectItem>
+    </SelectContent>
+      </Select>
+
+      <label className="block text-sm font-medium">
+    Committee Preference Two <span className="text-red-500">*</span>
+  </label>
+  <Select 
+    name="entry.1863658876"
+    required 
+    value={selectedCommittee2}
+    onValueChange={setSelectedCommittee2}
+  >
+    <SelectTrigger className={`w-full p-4 border rounded-md ${selectedCommittee2 ? "text-black" : "text-gray-400"}`}>
+      <SelectValue placeholder="Select Committee" />
+    </SelectTrigger>
+    <SelectContent>
+      <SelectItem value="UNHRC">United Nations Human Rights Council (UNHRC)</SelectItem>
+      <SelectItem value="UNGA">United Nations General Assembly (UNGA)</SelectItem>
+      <SelectItem value="CCC">Continuous Crisis Committee (CCC)</SelectItem>
+      <SelectItem value="UNCSW">United Nations Commission on Status of Women (UNCSW)</SelectItem>
+      <SelectItem value="IP-Photojournalism">International Press (IP) - Photojournalism</SelectItem>
+      <SelectItem value="IP-Journalism">International Press (IP) - Journalism</SelectItem>
+    </SelectContent>
+  </Select>
+    </div>
+  </div>
+
+  <div className="space-y-6">
+    {/* Section 3: Country Preferences */}
+  <h2 className="text-lg font-semibold">Section 3: Country Preferences</h2>
+
+{/* Country Matrix Information */}
+<div className="p-4 border-l-4 border-blue-600 bg-blue-50 text-blue-800">
+  <p className="font-semibold">Important Information:</p>
+  <p>Kindly ensure that you go through the country portfolio/matrix before filling your country preferences.</p>
+  <p><a href="https://docs.google.com/spreadsheets/d/1hrrm61R25ZJFPaxGm6Cd_0qH3WbbTNw-fxSh_V0dWH4/edit?usp=drivesdk" target="_blank" className="underline text-blue-600">Country Matrix Link</a></p>
+  <p><strong>Country Preferences are not applicable to those delegates who wish to be a part of IP Photojournalism & Journalism.</strong></p>
+</div>
+    {/* Section 3 */}
+    <h2 className="text-lg font-semibold mt-8">Section 3: Country Preferences</h2>
+
+    <div className="space-y-6 mt-6">
+  {/* Committee One - Country Preferences */}
+  <label className="block text-sm font-medium">
+    Committee One - Country Preference One <span className="text-red-500">*</span>
+  </label>
+  <Input
+    type="text"
+    name="entry.48250264"
+    required
+    className="w-full p-4 border rounded-md"
+    placeholder="Enter your first country preference"
+  />
+
+  <label className="block text-sm font-medium">
+    Committee One - Country Preference Two <span className="text-red-500">*</span>
+  </label>
+  <Input
+    type="text"
+    name="entry.1256802439"
+    required
+    className="w-full p-4 border rounded-md"
+    placeholder="Enter your second country preference"
+  />
+
+  <label className="block text-sm font-medium">
+    Committee One - Country Preference Three <span className="text-red-500">*</span>
+  </label>
+  <Input
+    type="text"
+    name="entry.1840640281"
+    required
+    className="w-full p-4 border rounded-md"
+    placeholder="Enter your third country preference"
+  />
+
+  {/* Committee Two - Country Preferences */}
+  <label className="block text-sm font-medium">
+    Committee Two - Country Preference One <span className="text-red-500">*</span>
+  </label>
+  <Input
+    type="text"
+    name="entry.584391547"
+    required
+    className="w-full p-4 border rounded-md"
+    placeholder="Enter your first country preference"
+  />
+
+  <label className="block text-sm font-medium">
+    Committee Two - Country Preference Two <span className="text-red-500">*</span>
+  </label>
+  <Input
+    type="text"
+    name="entry.1952299249"
+    required
+    className="w-full p-4 border rounded-md"
+    placeholder="Enter your second country preference"
+  />
+
+  <label className="block text-sm font-medium">
+    Committee Two - Country Preference Three <span className="text-red-500">*</span>
+  </label>
+  <Input
+    type="text"
+    name="entry.995694688"
+    required
+    className="w-full p-4 border rounded-md"
+    placeholder="Enter your third country preference"
+  />
+</div>
+
+  </div>
+
+  <div className="space-y-6">
+    {/* Section 4 */}
+    <h2 className="text-lg font-semibold mt-8">Section 4: Experience Details</h2>
+
+    {/* Experience Information */}
+    <div className="p-6 border-l-4 border-blue-600 bg-blue-50 text-primary-800 rounded-md">
+      <p className="font-semibold text-lg">Kindly ensure that you answer these questions accurately for the facilitation of the MOCK MUN training session.</p>
+    </div>
+
+    <div className="space-y-6 mt-6">
+      <label className="block text-sm font-medium">Have you participated in MUN before?</label>
+      <Select 
+        name="entry.1738054312"
+        required 
+        defaultValue="" 
+        onValueChange={(value) => setSelected(value)}
+      >
+        <SelectTrigger className={`w-full p-4 border rounded-md ${selected ? "text-black" : "text-gray-400"}`}>
+          <SelectValue placeholder="Select Yes or No" />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectItem value="Yes">Yes</SelectItem>
+          <SelectItem value="No">No</SelectItem>
+        </SelectContent>
+      </Select>
+
+      <label className="block text-sm font-medium">Previous MUN Experiences</label>
+      <Input
+        type="text"
+        name="entry.436128629"
+        className="w-full p-4 border rounded-md"
+        placeholder="Enter details of your previous MUN experiences (if any)"
+      />
+
+      <label className="block text-sm font-medium">Previous MUN Wins</label>
+      <Input
+        type="text"
+        name="entry.1967484251"
+        className="w-full p-4 border rounded-md"
+        placeholder="Enter details of your previous MUN wins (if any)"
+      />
+
+      {/* Dynamic dlut value */}
+      <input 
+        type="hidden" 
+        name="dlut" 
+        value={dlutValue} 
+      />
+    </div>
+  </div>
+
+  <Button 
+    type="submit" 
+    className="w-full py-4 px-6 bg-primary text-white rounded-md mt-8"
+    disabled={isSubmitting}
+  >
+    {isSubmitting ? 'Submitting...' : 'Submit Registration'}
+  </Button>
+
+
+</form>):(
+ <div className="p-4 w-full max-w-md md:max-w-lg lg:max-w-xl border-l-4 border-green-600 bg-green-50 text-green-800 rounded-md shadow-md mx-auto">
+ <p className="font-semibold text-lg md:text-xl leading-relaxed">
+   Thank you for registering! We appreciate your interest.
+ </p>
+</div>
+
+
+
+        )}
+  </div>
+
+  
+
+{/* Remove the iframe */}
+</CardFooter>
+
+
+
             </Card>
           </TabsContent>
 
 
-          {/* Executive Board Application Tab */}
           <TabsContent value="eb" className="mt-6">
             <Card>
               <CardHeader>
@@ -143,7 +566,6 @@ export default function RegistrationPage() {
 
         <Separator className="my-12" />
 
-        {/* Communication Channels and Contact Information */}
         <div className="grid md:grid-cols-2 gap-8">
           <Card>
             <CardHeader>
@@ -271,5 +693,5 @@ export default function RegistrationPage() {
         </div>
       </div>
     </div>
-  );
+  )
 }
