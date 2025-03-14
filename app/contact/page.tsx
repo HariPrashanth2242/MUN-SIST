@@ -203,7 +203,7 @@ Stay connected with the organizing team and fellow delegates for instant updates
                 <h3 className="text-xl font-semibold mb-2">Email</h3>
                 <p className="text-muted-foreground mb-4">For formal inquiries and official communication</p>
                 <Link href="mailto:info@sathyabamamun.com" className="text-primary hover:underline">
-                  info@sathyabamamun.com
+                Munianish076@gmail.com  natureschild139@gmail.com
                 </Link>
               </CardContent>
             </Card>
