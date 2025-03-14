@@ -112,9 +112,13 @@ export default function RegistrationPage() {
         </p>
 
         <Tabs defaultValue="delegate" className="w-full">
-          <TabsList className="grid w-full grid-cols-2">
-            <TabsTrigger value="delegate">Delegate Registration</TabsTrigger>
-            <TabsTrigger value="eb">Executive Board Application</TabsTrigger>
+          <TabsList className="grid w-full grid-cols-2 auto-rows-fr min-h-[3.5rem]">
+            <TabsTrigger value="delegate" className="text-center break-words whitespace-normal">
+              Delegate Registration
+            </TabsTrigger>
+            <TabsTrigger value="eb" className="text-center break-words whitespace-normal">
+              Executive Board Application
+            </TabsTrigger>
           </TabsList>
 
           <TabsContent value="delegate" className="mt-6">
