@@ -26,7 +26,7 @@ export default function AboutPage() {
             </div>
             <div className="relative h-64 rounded-lg overflow-hidden">
               <Image
-                src="/placeholder.svg?height=400&width=600"
+                src="/about1.svg?height=400&width=600"
                 alt="Model United Nations Session"
                 fill
                 className="object-cover"
@@ -42,7 +42,7 @@ export default function AboutPage() {
           <div className="grid md:grid-cols-2 gap-8 items-center">
             <div className="order-2 md:order-1 relative h-64 rounded-lg overflow-hidden">
               <Image
-                src="/placeholder.svg?height=400&width=600"
+                src="/about2.svg?height=400&width=600"
                 alt="Sathyabama Campus"
                 fill
                 className="object-cover"
