@@ -7,9 +7,10 @@ import { Download, FileText, BookOpen, HelpCircle } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 import { Badge } from "@/components/ui/badge";
 import { useEffect, useState } from "react";
+import { Suspense } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 
-export default function ResourcesPage() {
+function ResourcesContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const [activeTab, setActiveTab] = useState("position-papers"); // Default tab
@@ -52,22 +53,21 @@ export default function ResourcesPage() {
           to help both experienced delegates and newcomers.
         </p>
         <div className="p-6 mb-6 border-l-4 border-red-600 bg-red-50 text-red-800 rounded-md">
-    <p className="font-semibold text-lg">Important Notice:</p>
-    <p className="mt-2 text-m">
-      <strong>Study Guides will be released soon !</strong>.
-    </p>
-  </div>
+          <p className="font-semibold text-lg">Important Notice:</p>
+          <p className="mt-2 text-m">
+            <strong>Study Guides will be released soon!</strong>
+          </p>
+        </div>
 
-       {/*<Tabs value={activeTab} onValueChange={handleTabChange} className="w-full">
+        {/* Tabs section (commented out) */}
+        {/* <Tabs value={activeTab} onValueChange={handleTabChange} className="w-full">
           <TabsList className="w-full gap-14">
-             Commented out Study Guides and Rules of Procedure tabs 
-             <TabsTrigger value="study-guides">Study Guides</TabsTrigger>
-            <TabsTrigger value="rules">Rules of Procedure</TabsTrigger> 
+            <TabsTrigger value="study-guides">Study Guides</TabsTrigger>
+            <TabsTrigger value="rules">Rules of Procedure</TabsTrigger>
             <TabsTrigger value="position-papers">Position Papers</TabsTrigger>
-          </TabsList> */} 
+          </TabsList>
 
-          {/* Commented out Study Guides section */}
-          {/* <TabsContent value="study-guides" className="mt-6">
+          <TabsContent value="study-guides" className="mt-6">
             <Card>
               <CardHeader>
                 <div className="flex items-center justify-between">
@@ -122,10 +122,9 @@ export default function ResourcesPage() {
                 </Button>
               </CardFooter>
             </Card>
-          </TabsContent> */}
+          </TabsContent>
 
-          {/* Commented out Rules of Procedure section */}
-          {/* <TabsContent value="rules" className="mt-6">
+          <TabsContent value="rules" className="mt-6">
             <Card>
               <CardHeader>
                 <div className="flex items-center justify-between">
@@ -170,11 +169,10 @@ export default function ResourcesPage() {
                 </div>
               </CardContent>
             </Card>
-          </TabsContent> */}
+          </TabsContent>
 
-          {/* Position Papers section (active) */}
-          {/* <TabsContent value="position-papers" className="mt-6"> */}
-            <Card id="position-papers">
+          <TabsContent value="position-papers" className="mt-6">
+            <Card>
               <CardHeader>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
@@ -194,7 +192,6 @@ export default function ResourcesPage() {
                   participation.
                 </p>
                 <div className="grid gap-4">
-                  {/* Position Paper Guidelines */}
                   <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between p-4 border rounded-lg">
                     <div className="flex items-center">
                       <FileText className="h-5 w-5 text-primary mr-3" />
@@ -218,7 +215,6 @@ export default function ResourcesPage() {
                     </div>
                   </div>
 
-                  {/* Sample Position Paper - UNGA */}
                   <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between p-4 border rounded-lg">
                     <div className="flex items-center">
                       <FileText className="h-5 w-5 text-primary mr-3" />
@@ -242,7 +238,6 @@ export default function ResourcesPage() {
                     </div>
                   </div>
 
-                  {/* Sample Position Paper - UNHRC */}
                   <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between p-4 border rounded-lg">
                     <div className="flex items-center">
                       <FileText className="h-5 w-5 text-primary mr-3" />
@@ -265,35 +260,107 @@ export default function ResourcesPage() {
                       </Button>
                     </div>
                   </div>
-
-                  {/* Position Paper Rubric
-                  <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between p-4 border rounded-lg">
-                    <div className="flex items-center">
-                      <FileText className="h-5 w-5 text-primary mr-3" />
-                      <div>
-                        <div className="flex items-center gap-2">
-                          <p className="font-medium">Position Paper Rubric</p>
-                          <Badge variant="outline" className="text-xs">
-                            Evaluation
-                          </Badge>
-                        </div>
-                        <p className="text-sm text-muted-foreground">Evaluation criteria for position papers</p>
-                      </div>
-                    </div>
-                    <div className="mt-2 sm:mt-0 sm:ml-4">
-                      <Button variant="outline" size="sm" asChild>
-                        <Link href="https://drive.google.com/file" target="_blank" rel="noopener noreferrer">
-                          <Download className="h-4 w-4 mr-1" />
-                          Download
-                        </Link>
-                      </Button>
-                    </div>
-                  </div> */}
-                </div> 
+                </div>
               </CardContent>
             </Card>
-          {/*</TabsContent>*/}
-       {/*</Tabs> */} 
+          </TabsContent>
+        </Tabs> */}
+
+        {/* Position Papers section (active) */}
+        <Card id="position-papers">
+          <CardHeader>
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <BookOpen className="h-5 w-5 text-primary" />
+                <CardTitle>Position Papers</CardTitle>
+              </div>
+              <Badge variant="outline" className="bg-primary/10 text-primary">
+                Mandatory
+              </Badge>
+            </div>
+            <CardDescription>Guidelines and samples for writing effective position papers</CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <p>
+              Position papers outline your country's stance on the committee topic, relevant historical background,
+              proposed solutions, and anticipated challenges. They are essential preparation for effective
+              participation.
+            </p>
+            <div className="grid gap-4">
+              {/* Position Paper Guidelines */}
+              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between p-4 border rounded-lg">
+                <div className="flex items-center">
+                  <FileText className="h-5 w-5 text-primary mr-3" />
+                  <div>
+                    <div className="flex items-center gap-2">
+                      <p className="font-medium">Position Paper Guidelines</p>
+                      <Badge variant="secondary" className="text-xs">
+                        Required
+                      </Badge>
+                    </div>
+                    <p className="text-sm text-muted-foreground">Format, structure, and submission instructions</p>
+                  </div>
+                </div>
+                <div className="mt-2 sm:mt-0 sm:ml-4">
+                  <Button variant="outline" size="sm" asChild>
+                    <Link href="POSITION PAPER GUIDELINES .pdf" target="_blank" rel="noopener noreferrer">
+                      <Download className="h-4 w-4 mr-1" />
+                      Download
+                    </Link>
+                  </Button>
+                </div>
+              </div>
+
+              {/* Sample Position Paper - UNGA */}
+              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between p-4 border rounded-lg">
+                <div className="flex items-center">
+                  <FileText className="h-5 w-5 text-primary mr-3" />
+                  <div>
+                    <div className="flex items-center gap-2">
+                      <p className="font-medium">Sample Position Paper - UNGA</p>
+                      <Badge variant="outline" className="text-xs">
+                        Example
+                      </Badge>
+                    </div>
+                    <p className="text-sm text-muted-foreground">Example of an excellent position paper</p>
+                  </div>
+                </div>
+                <div className="mt-2 sm:mt-0 sm:ml-4">
+                  <Button variant="outline" size="sm" asChild>
+                    <Link href="Sample Position Paper-UNGA.pdf" target="_blank" rel="noopener noreferrer">
+                      <Download className="h-4 w-4 mr-1" />
+                      Download
+                    </Link>
+                  </Button>
+                </div>
+              </div>
+
+              {/* Sample Position Paper - UNHRC */}
+              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between p-4 border rounded-lg">
+                <div className="flex items-center">
+                  <FileText className="h-5 w-5 text-primary mr-3" />
+                  <div>
+                    <div className="flex items-center gap-2">
+                      <p className="font-medium">Sample Position Paper - UNHRC</p>
+                      <Badge variant="outline" className="text-xs">
+                        Example
+                      </Badge>
+                    </div>
+                    <p className="text-sm text-muted-foreground">Example of an excellent position paper</p>
+                  </div>
+                </div>
+                <div className="mt-2 sm:mt-0 sm:ml-4">
+                  <Button variant="outline" size="sm" asChild>
+                    <Link href="UNHRC_SAMPLEPOSITION.pdf" target="_blank" rel="noopener noreferrer">
+                      <Download className="h-4 w-4 mr-1" />
+                      Download
+                    </Link>
+                  </Button>
+                </div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
 
         <Separator className="my-12" />
 
@@ -361,5 +428,13 @@ export default function ResourcesPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function ResourcesPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <ResourcesContent />
+    </Suspense>
   );
 }
