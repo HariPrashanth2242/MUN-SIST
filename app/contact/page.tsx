@@ -1,11 +1,35 @@
+"use client"; // Ensure this is at the top
+
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardContent, CardDescription, CardHeader, CardFooter, CardTitle } from "@/components/ui/card"
 import { ExternalLink, Mail, Phone, MapPin, Send, MessageSquare } from "lucide-react"
+import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator"
 import { Badge } from "@/components/ui/badge"
+import { useState } from "react";
 
 export default function ContactPage() {
+  const [submitted, setSubmitted] = useState(false);
+  const [contactNumber, setContactNumber] = useState("");
+  const [emailId, setEmailId] = useState("");
+  const [helpMessage, setHelpMessage] = useState("");
+
+  const handleSubmit = () => {  // Prevent form submission
+
+    setSubmitted(true);
+
+    setTimeout(() => {
+      setSubmitted(false);
+      setContactNumber("");  // Clear contact number
+      setEmailId("");        // Clear email
+      setHelpMessage("");    // Clear help message
+    }, 1500);  // Reset after 1.5 seconds
+  };
+  
+
+  
+
   return (
     <div>
       <div className="container py-12">
@@ -30,18 +54,81 @@ export default function ContactPage() {
                 </div>
                 <CardDescription>Fill out our inquiry form and we'll get back to you</CardDescription>
               </CardHeader>
-              <CardContent>
+              <CardContent id='enquiry'>
                 <p className="mb-6">
                   For general questions about registration, committees, accommodation, or any other aspect of Sathyabama
-                  MUN 2025, please submit an inquiry using our Google Form.
+                  MUN 2025, please submit an inquiry.
                 </p>
-                <Button className="w-full" asChild>
-                  <Link href="https://forms.google.com" target="_blank" rel="noopener noreferrer">
-                    <ExternalLink className="mr-2 h-4 w-4" />
-                    Open Inquiry Form
-                  </Link>
-                </Button>
               </CardContent>
+              <CardFooter>
+  <form 
+  action="https://docs.google.com/forms/d/e/1FAIpQLSfsJbJQsUU4UMWRM0HU62xaIzgvSSyKMHnoF3YMBZw3fPZcuw/formResponse"
+  method="POST"
+  target="hidden_iframe"
+
+  
+  onSubmit={handleSubmit} className="w-full space-y-4">
+    {/* Contact Number Input */}
+    <div className="flex flex-col">
+      <label htmlFor="contact-number" className="mb-2 text-sm font-medium">Contact Number</label>
+      <Input
+        type="tel"
+        name="entry.34985409"
+
+        placeholder="Contact Number"
+        className="w-full"
+        value={contactNumber}
+        onChange={(e) => setContactNumber(e.target.value)} 
+        required
+      />
+    </div>
+
+    {/* Email ID Input */}
+    <div className="flex flex-col">
+      <label htmlFor="email-id" className="mb-2 text-sm font-medium">Email ID</label>
+      <Input
+        type="email"
+        name="entry.1056944501"
+  // Add id to associate with the label
+        placeholder="Email ID"
+        className="w-full"
+        value={emailId}
+        onChange={(e) => setEmailId(e.target.value)}  
+        required
+      />
+    </div>
+
+    {/* How can we help you? Input */}
+    <div className="flex flex-col">
+      <label htmlFor="help-message" className="mb-2 text-sm font-medium">How can we help you?</label>
+      <Input
+        type="text"
+        name="entry.21916993"
+        value={helpMessage}
+        onChange={(e) => setHelpMessage(e.target.value)}
+        placeholder="How can we help you?"
+        className="w-full"
+        required
+      />
+    </div>
+
+    {/* Success Message */}
+    {submitted && (
+      <div className="p-2 justify-center items-center border-l-4 border-green-600 bg-green-50 text-primary-800 rounded-md">
+        <p className="font-semibold text-lg justify-center text-center">Submitted ✓</p>
+      </div>
+    )}
+
+    {/* Submit Button (Moved Below) */}
+    <Button type="submit" className="w-full">
+      Submit Inquiry
+    </Button>
+  </form>
+
+  {/* Hidden Iframe to Prevent Redirect */}
+  <iframe name="hidden_iframe" style={{ display: "none" }} />
+</CardFooter>
+
             </Card>
 
             <Card>
@@ -51,14 +138,15 @@ export default function ContactPage() {
                     <MessageSquare className="mr-2 h-5 w-5" />
                     Join Our Communication Channels
                   </CardTitle>
-       
                 </div>
                 <CardDescription>Connect with organizers and other delegates</CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
                 <p>
-                  For quick updates and direct communication with the organizing team and fellow delegates, join our
-                  official WhatsApp and Telegram groups.
+
+                
+
+Stay connected with the organizing team and fellow delegates for instant updates. Join our official WhatsApp and Telegram groups for quick communication. Get the latest announcements, ask questions, and interact directly. Stay informed on all event details. Don’t miss out on essential updates—join now! Engage in real-time discussions and network with other delegates. Be part of the community and share valuable insights. Stay ahead and make the most of your MUN experience! Share your thoughts and suggestions with the team. Be part of the planning and contribute your ideas. Join the conversation and help shape the event!
                 </p>
                 <div className="flex flex-col space-y-3">
                   <Button variant="outline" className="justify-start" asChild>
@@ -121,7 +209,7 @@ export default function ContactPage() {
             </Card>
 
             <Card>
-              <CardContent className="p-6 flex flex-col items-center text-center">
+              <CardContent  className="p-6 flex flex-col items-center text-center">
                 <Phone className="h-10 w-10 text-primary mb-4" />
                 <h3 className="text-xl font-semibold mb-2">Phone</h3>
                 <p className="text-muted-foreground mb-4">For urgent matters requiring immediate attention</p>
@@ -153,8 +241,6 @@ export default function ContactPage() {
 
       <div className="container py-12">
         <div className="max-w-4xl mx-auto">
-          
-
           <div className="mb-12">
             <h2 className="text-2xl font-semibold mb-6">Meet the Organizing Team</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
@@ -292,4 +378,3 @@ export default function ContactPage() {
     </div>
   )
 }
-

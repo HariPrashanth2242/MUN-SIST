@@ -1,50 +1,47 @@
 "use client";
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Download, FileText, BookOpen, HelpCircle } from "lucide-react"
-import { Separator } from "@/components/ui/separator"
-import { Badge } from "@/components/ui/badge"
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Download, FileText, BookOpen, HelpCircle } from "lucide-react";
+import { Separator } from "@/components/ui/separator";
+import { Badge } from "@/components/ui/badge";
 import { useEffect, useState } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 
 export default function ResourcesPage() {
-    const searchParams = useSearchParams();
-    const router = useRouter();
-    const [activeTab, setActiveTab] = useState("study-guides"); // Default tab
-  
-    useEffect(() => {
-      const value = searchParams.get("value"); // Get 'value' from URL
-      if (value) {
-        if (value === "beginners") {
-          // Scroll to just above the bottom of the page when the 'beginners' tab is clicked
-          const scrollPosition = document.documentElement.scrollHeight - window.innerHeight - 250; // Adjust 100 as needed for "just above the bottom"
-          window.scrollTo({ top: scrollPosition, behavior: "smooth" });
-        } else {
-          setActiveTab(value); // Set active tab if it's not 'beginners'
-          document.getElementById(value)?.scrollIntoView({ behavior: "smooth", block: "start" });
-        }
-      }
-    }, [searchParams]);
-    
-    
-    const handleTabChange = (value: string) => {
-      // Only call setActiveTab if value is not 'beginners'
-      if (value !== "beginners") {
-        setActiveTab(value);
-      }
-    
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const [activeTab, setActiveTab] = useState("study-guides"); // Default tab
+
+  useEffect(() => {
+    const value = searchParams.get("value"); // Get 'value' from URL
+    if (value) {
       if (value === "beginners") {
         // Scroll to just above the bottom of the page when the 'beginners' tab is clicked
-        const scrollPosition = document.documentElement.scrollHeight - window.innerHeight - 100; // Adjust 100 as needed for "just above the bottom"
+        const scrollPosition = document.documentElement.scrollHeight - window.innerHeight - 250; // Adjust 100 as needed for "just above the bottom"
         window.scrollTo({ top: scrollPosition, behavior: "smooth" });
+      } else {
+        setActiveTab(value); // Set active tab if it's not 'beginners'
+        document.getElementById(value)?.scrollIntoView({ behavior: "smooth", block: "start" });
       }
-    
-      router.push(`/resources?value=${value}`, { scroll: false }); // Update URL without page reload
-    };
-    
-    
+    }
+  }, [searchParams]);
+
+  const handleTabChange = (value: string) => {
+    // Only call setActiveTab if value is not 'beginners'
+    if (value !== "beginners") {
+      setActiveTab(value);
+    }
+
+    if (value === "beginners") {
+      // Scroll to just above the bottom of the page when the 'beginners' tab is clicked
+      const scrollPosition = document.documentElement.scrollHeight - window.innerHeight - 100; // Adjust 100 as needed for "just above the bottom"
+      window.scrollTo({ top: scrollPosition, behavior: "smooth" });
+    }
+
+    router.push(`/resources?value=${value}`, { scroll: false }); // Update URL without page reload
+  };
 
   return (
     <div className="container py-12">
@@ -56,7 +53,7 @@ export default function ResourcesPage() {
         </p>
 
         <Tabs value={activeTab} onValueChange={handleTabChange} className="w-full">
-          <TabsList className="grid w-full grid-cols-1 md:grid-cols-3">
+          <TabsList className="w-full grid grid-cols-3 gap-14">
             <TabsTrigger value="study-guides">Study Guides</TabsTrigger>
             <TabsTrigger value="rules">Rules of Procedure</TabsTrigger>
             <TabsTrigger value="position-papers">Position Papers</TabsTrigger>
@@ -82,7 +79,8 @@ export default function ResourcesPage() {
                   consider, research guidance, and a bibliography of helpful resources.
                 </p>
                 <div className="grid gap-4">
-                  <div className="flex items-center justify-between p-4 border rounded-lg">
+                  {/* UNGA Study Guide */}
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between p-4 border rounded-lg">
                     <div className="flex items-center">
                       <FileText className="h-5 w-5 text-primary mr-3" />
                       <div>
@@ -97,15 +95,18 @@ export default function ResourcesPage() {
                         </p>
                       </div>
                     </div>
-                    <Button variant="outline" size="sm" asChild>
-                      <Link href="https://drive.google.com/file" target="_blank" rel="noopener noreferrer">
-                        <Download className="h-4 w-4 mr-1" />
-                        Download
-                      </Link>
-                    </Button>
+                    <div className="mt-2 sm:mt-0 sm:ml-4">
+                      <Button variant="outline" size="sm" asChild>
+                        <Link href="https://drive.google.com/file" target="_blank" rel="noopener noreferrer">
+                          <Download className="h-4 w-4 mr-1" />
+                          Download
+                        </Link>
+                      </Button>
+                    </div>
                   </div>
 
-                  <div className="flex items-center justify-between p-4 border rounded-lg">
+                  {/* UNHRC Study Guide */}
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between p-4 border rounded-lg">
                     <div className="flex items-center">
                       <FileText className="h-5 w-5 text-primary mr-3" />
                       <div>
@@ -120,15 +121,18 @@ export default function ResourcesPage() {
                         </p>
                       </div>
                     </div>
-                    <Button variant="outline" size="sm" asChild>
-                      <Link href="https://drive.google.com/file" target="_blank" rel="noopener noreferrer">
-                        <Download className="h-4 w-4 mr-1" />
-                        Download
-                      </Link>
-                    </Button>
+                    <div className="mt-2 sm:mt-0 sm:ml-4">
+                      <Button variant="outline" size="sm" asChild>
+                        <Link href="https://drive.google.com/file" target="_blank" rel="noopener noreferrer">
+                          <Download className="h-4 w-4 mr-1" />
+                          Download
+                        </Link>
+                      </Button>
+                    </div>
                   </div>
 
-                  <div className="flex items-center justify-between p-4 border rounded-lg">
+                  {/* UNCSW Study Guide */}
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between p-4 border rounded-lg">
                     <div className="flex items-center">
                       <FileText className="h-5 w-5 text-primary mr-3" />
                       <div>
@@ -141,15 +145,18 @@ export default function ResourcesPage() {
                         <p className="text-sm text-muted-foreground">Reshaping Economic Systems for Gender Parity</p>
                       </div>
                     </div>
-                    <Button variant="outline" size="sm" asChild>
-                      <Link href="https://drive.google.com/file" target="_blank" rel="noopener noreferrer">
-                        <Download className="h-4 w-4 mr-1" />
-                        Download
-                      </Link>
-                    </Button>
+                    <div className="mt-2 sm:mt-0 sm:ml-4">
+                      <Button variant="outline" size="sm" asChild>
+                        <Link href="https://drive.google.com/file" target="_blank" rel="noopener noreferrer">
+                          <Download className="h-4 w-4 mr-1" />
+                          Download
+                        </Link>
+                      </Button>
+                    </div>
                   </div>
 
-                  <div className="flex items-center justify-between p-4 border rounded-lg">
+                  {/* Crisis Committee Study Guide */}
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between p-4 border rounded-lg">
                     <div className="flex items-center">
                       <FileText className="h-5 w-5 text-primary mr-3" />
                       <div>
@@ -164,15 +171,18 @@ export default function ResourcesPage() {
                         </p>
                       </div>
                     </div>
-                    <Button variant="outline" size="sm" asChild>
-                      <Link href="https://drive.google.com/file" target="_blank" rel="noopener noreferrer">
-                        <Download className="h-4 w-4 mr-1" />
-                        Download
-                      </Link>
-                    </Button>
+                    <div className="mt-2 sm:mt-0 sm:ml-4">
+                      <Button variant="outline" size="sm" asChild>
+                        <Link href="https://drive.google.com/file" target="_blank" rel="noopener noreferrer">
+                          <Download className="h-4 w-4 mr-1" />
+                          Download
+                        </Link>
+                      </Button>
+                    </div>
                   </div>
 
-                  <div className="flex items-center justify-between p-4 border rounded-lg">
+                  {/* IPC Guidelines */}
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between p-4 border rounded-lg">
                     <div className="flex items-center">
                       <FileText className="h-5 w-5 text-primary mr-3" />
                       <div>
@@ -185,12 +195,14 @@ export default function ResourcesPage() {
                         <p className="text-sm text-muted-foreground">Journalism & Photojournalism</p>
                       </div>
                     </div>
-                    <Button variant="outline" size="sm" asChild>
-                      <Link href="https://drive.google.com/file" target="_blank" rel="noopener noreferrer">
-                        <Download className="h-4 w-4 mr-1" />
-                        Download
-                      </Link>
-                    </Button>
+                    <div className="mt-2 sm:mt-0 sm:ml-4">
+                      <Button variant="outline" size="sm" asChild>
+                        <Link href="https://drive.google.com/file" target="_blank" rel="noopener noreferrer">
+                          <Download className="h-4 w-4 mr-1" />
+                          Download
+                        </Link>
+                      </Button>
+                    </div>
                   </div>
                 </div>
               </CardContent>
@@ -225,7 +237,8 @@ export default function ResourcesPage() {
                   formats, voting procedures, and resolution drafting guidelines.
                 </p>
                 <div className="grid gap-4">
-                  <div className="flex items-center justify-between p-4 border rounded-lg">
+                  {/* Sathyabama MUN Rules of Procedure */}
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between p-4 border rounded-lg">
                     <div className="flex items-center">
                       <FileText className="h-5 w-5 text-primary mr-3" />
                       <div>
@@ -238,15 +251,18 @@ export default function ResourcesPage() {
                         <p className="text-sm text-muted-foreground">Comprehensive guide to parliamentary procedure</p>
                       </div>
                     </div>
-                    <Button variant="outline" size="sm" asChild>
-                      <Link href="https://drive.google.com/file" target="_blank" rel="noopener noreferrer">
-                        <Download className="h-4 w-4 mr-1" />
-                        Download
-                      </Link>
-                    </Button>
+                    <div className="mt-2 sm:mt-0 sm:ml-4">
+                      <Button variant="outline" size="sm" asChild>
+                        <Link href="https://drive.google.com/file" target="_blank" rel="noopener noreferrer">
+                          <Download className="h-4 w-4 mr-1" />
+                          Download
+                        </Link>
+                      </Button>
+                    </div>
                   </div>
 
-                  <div className="flex items-center justify-between p-4 border rounded-lg">
+                  {/* Quick Reference Guide */}
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between p-4 border rounded-lg">
                     <div className="flex items-center">
                       <FileText className="h-5 w-5 text-primary mr-3" />
                       <div>
@@ -259,15 +275,18 @@ export default function ResourcesPage() {
                         <p className="text-sm text-muted-foreground">One-page summary of essential rules and motions</p>
                       </div>
                     </div>
-                    <Button variant="outline" size="sm" asChild>
-                      <Link href="https://drive.google.com/file" target="_blank" rel="noopener noreferrer">
-                        <Download className="h-4 w-4 mr-1" />
-                        Download
-                      </Link>
-                    </Button>
+                    <div className="mt-2 sm:mt-0 sm:ml-4">
+                      <Button variant="outline" size="sm" asChild>
+                        <Link href="https://drive.google.com/file" target="_blank" rel="noopener noreferrer">
+                          <Download className="h-4 w-4 mr-1" />
+                          Download
+                        </Link>
+                      </Button>
+                    </div>
                   </div>
 
-                  <div className="flex items-center justify-between p-4 border rounded-lg">
+                  {/* Crisis Committee Special Procedures */}
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between p-4 border rounded-lg">
                     <div className="flex items-center">
                       <FileText className="h-5 w-5 text-primary mr-3" />
                       <div>
@@ -282,12 +301,14 @@ export default function ResourcesPage() {
                         </p>
                       </div>
                     </div>
-                    <Button variant="outline" size="sm" asChild>
-                      <Link href="https://drive.google.com/file" target="_blank" rel="noopener noreferrer">
-                        <Download className="h-4 w-4 mr-1" />
-                        Download
-                      </Link>
-                    </Button>
+                    <div className="mt-2 sm:mt-0 sm:ml-4">
+                      <Button variant="outline" size="sm" asChild>
+                        <Link href="https://drive.google.com/file" target="_blank" rel="noopener noreferrer">
+                          <Download className="h-4 w-4 mr-1" />
+                          Download
+                        </Link>
+                      </Button>
+                    </div>
                   </div>
                 </div>
               </CardContent>
@@ -315,7 +336,8 @@ export default function ResourcesPage() {
                   participation.
                 </p>
                 <div className="grid gap-4">
-                  <div className="flex items-center justify-between p-4 border rounded-lg">
+                  {/* Position Paper Guidelines */}
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between p-4 border rounded-lg">
                     <div className="flex items-center">
                       <FileText className="h-5 w-5 text-primary mr-3" />
                       <div>
@@ -328,15 +350,18 @@ export default function ResourcesPage() {
                         <p className="text-sm text-muted-foreground">Format, structure, and submission instructions</p>
                       </div>
                     </div>
-                    <Button variant="outline" size="sm" asChild>
-                      <Link href="https://drive.google.com/file" target="_blank" rel="noopener noreferrer">
-                        <Download className="h-4 w-4 mr-1" />
-                        Download
-                      </Link>
-                    </Button>
+                    <div className="mt-2 sm:mt-0 sm:ml-4">
+                      <Button variant="outline" size="sm" asChild>
+                        <Link href="https://drive.google.com/file" target="_blank" rel="noopener noreferrer">
+                          <Download className="h-4 w-4 mr-1" />
+                          Download
+                        </Link>
+                      </Button>
+                    </div>
                   </div>
 
-                  <div className="flex items-center justify-between p-4 border rounded-lg">
+                  {/* Sample Position Paper - UNGA */}
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between p-4 border rounded-lg">
                     <div className="flex items-center">
                       <FileText className="h-5 w-5 text-primary mr-3" />
                       <div>
@@ -349,15 +374,18 @@ export default function ResourcesPage() {
                         <p className="text-sm text-muted-foreground">Example of an excellent position paper</p>
                       </div>
                     </div>
-                    <Button variant="outline" size="sm" asChild>
-                      <Link href="https://drive.google.com/file" target="_blank" rel="noopener noreferrer">
-                        <Download className="h-4 w-4 mr-1" />
-                        Download
-                      </Link>
-                    </Button>
+                    <div className="mt-2 sm:mt-0 sm:ml-4">
+                      <Button variant="outline" size="sm" asChild>
+                        <Link href="https://drive.google.com/file" target="_blank" rel="noopener noreferrer">
+                          <Download className="h-4 w-4 mr-1" />
+                          Download
+                        </Link>
+                      </Button>
+                    </div>
                   </div>
 
-                  <div className="flex items-center justify-between p-4 border rounded-lg">
+                  {/* Sample Position Paper - UNHRC */}
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between p-4 border rounded-lg">
                     <div className="flex items-center">
                       <FileText className="h-5 w-5 text-primary mr-3" />
                       <div>
@@ -370,15 +398,18 @@ export default function ResourcesPage() {
                         <p className="text-sm text-muted-foreground">Example of an excellent position paper</p>
                       </div>
                     </div>
-                    <Button variant="outline" size="sm" asChild>
-                      <Link href="https://drive.google.com/file" target="_blank" rel="noopener noreferrer">
-                        <Download className="h-4 w-4 mr-1" />
-                        Download
-                      </Link>
-                    </Button>
+                    <div className="mt-2 sm:mt-0 sm:ml-4">
+                      <Button variant="outline" size="sm" asChild>
+                        <Link href="https://drive.google.com/file" target="_blank" rel="noopener noreferrer">
+                          <Download className="h-4 w-4 mr-1" />
+                          Download
+                        </Link>
+                      </Button>
+                    </div>
                   </div>
 
-                  <div className="flex items-center justify-between p-4 border rounded-lg">
+                  {/* Position Paper Rubric */}
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between p-4 border rounded-lg">
                     <div className="flex items-center">
                       <FileText className="h-5 w-5 text-primary mr-3" />
                       <div>
@@ -391,12 +422,14 @@ export default function ResourcesPage() {
                         <p className="text-sm text-muted-foreground">Evaluation criteria for position papers</p>
                       </div>
                     </div>
-                    <Button variant="outline" size="sm" asChild>
-                      <Link href="https://drive.google.com/file" target="_blank" rel="noopener noreferrer">
-                        <Download className="h-4 w-4 mr-1" />
-                        Download
-                      </Link>
-                    </Button>
+                    <div className="mt-2 sm:mt-0 sm:ml-4">
+                      <Button variant="outline" size="sm" asChild>
+                        <Link href="https://drive.google.com/file" target="_blank" rel="noopener noreferrer">
+                          <Download className="h-4 w-4 mr-1" />
+                          Download
+                        </Link>
+                      </Button>
+                    </div>
                   </div>
                 </div>
               </CardContent>
@@ -407,60 +440,70 @@ export default function ResourcesPage() {
         <Separator className="my-12" />
 
         <div className="bg-muted p-6 rounded-lg">
-          <div className="flex items-start gap-4">
-            <HelpCircle className="h-8 w-8 text-primary mt-1" />
-            <div>
-              <div className="flex items-center gap-2 mb-4">
-                <h2 className="text-2xl font-semibold">New to MUN? Here's How to Prepare!</h2>
-                <Badge variant="secondary">Beginner Guide</Badge>
-              </div>
-              <div className="space-y-4">
-                <p>
-                  If this is your first Model United Nations conference, don't worry! We've put together a
-                  beginner-friendly guide to help you prepare effectively and make the most of your experience.
-                </p>
-                <div className="grid md:grid-cols-2 gap-4">
-                  <div className="p-4 bg-background rounded-lg">
-                    <h3 className="font-semibold mb-2">Research Your Country</h3>
-                    <p className="text-sm text-muted-foreground">
-                      Understand your assigned country's history, political system, economy, and stance on the committee
-                      topic.
-                    </p>
-                  </div>
+  <div className="flex items-start gap-4 flex-col md:flex-row">
+    <HelpCircle className="h-8 w-8 text-primary mt-1" />
+    <div className="w-full">
+      <div className="flex items-center gap-2 mb-4">
+        <h2 className="text-2xl font-semibold">New to MUN? Here's How to Prepare!</h2>
+        <Badge variant="secondary">Beginner Guide</Badge>
+      </div>
+      <div className="space-y-4">
+        <p>
+          If this is your first Model United Nations conference, don't worry! We've put together a
+          beginner-friendly guide to help you prepare effectively and make the most of your experience.
+        </p>
+        <div className="grid md:grid-cols-2 gap-4">
+          <div className="p-4 bg-background rounded-lg">
+            <h3 className="font-semibold mb-2">Research Your Country</h3>
+            <p className="text-sm text-muted-foreground">
+              Understand your assigned country's history, political system, economy, and stance on the committee
+              topic.
+            </p>
+          </div>
 
-                  <div className="p-4 bg-background rounded-lg">
-                    <h3 className="font-semibold mb-2">Master the Rules</h3>
-                    <p className="text-sm text-muted-foreground">
-                      Familiarize yourself with the Rules of Procedure to navigate committee sessions confidently.
-                    </p>
-                  </div>
+          <div className="p-4 bg-background rounded-lg">
+            <h3 className="font-semibold mb-2">Master the Rules</h3>
+            <p className="text-sm text-muted-foreground">
+              Familiarize yourself with the Rules of Procedure to navigate committee sessions confidently.
+            </p>
+          </div>
 
-                  <div className="p-4 bg-background rounded-lg">
-                    <h3 className="font-semibold mb-2">Prepare Your Position Paper</h3>
-                    <p className="text-sm text-muted-foreground">
-                      Write a concise document outlining your country's perspective and proposed solutions.
-                    </p>
-                  </div>
+          <div className="p-4 bg-background rounded-lg">
+            <h3 className="font-semibold mb-2">Prepare Your Position Paper</h3>
+            <p className="text-sm text-muted-foreground">
+              Write a concise document outlining your country's perspective and proposed solutions.
+            </p>
+          </div>
 
-                  <div className="p-4 bg-background rounded-lg">
-                    <h3 className="font-semibold mb-2">Practice Public Speaking</h3>
-                    <p className="text-sm text-muted-foreground">
-                      Prepare and practice your opening speech to build confidence for committee sessions.
-                    </p>
-                  </div>
-                </div>
-                <Button className="mt-4" asChild>
-                  <Link href="https://drive.google.com/file" target="_blank" rel="noopener noreferrer">
-                    <Download className="mr-2 h-4 w-4" />
-                    Download Beginner's Guide to MUN
-                  </Link>
-                </Button>
-              </div>
-            </div> 
+          <div className="p-4 bg-background rounded-lg">
+            <h3 className="font-semibold mb-2">Practice Public Speaking</h3>
+            <p className="text-sm text-muted-foreground">
+              Prepare and practice your opening speech to build confidence for committee sessions.
+            </p>
           </div>
         </div>
+        <Button
+  className="mt-4 px-4 py-3 text-sm md:text-base md:px-6 md:py-3 break-words whitespace-normal h-auto min-h-[48px] sm:min-h-0"
+  asChild
+>
+  <Link
+    href="https://drive.google.com/file"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="flex items-center"
+  >
+    <Download className="mr-2 h-4 w-4" />
+    Download Beginner's Guide to MUN
+  </Link>
+</Button>
+
+
       </div>
     </div>
-  )
-}
+  </div>
+</div>
 
+      </div>
+    </div>
+  );
+}
