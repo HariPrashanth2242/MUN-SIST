@@ -16,7 +16,7 @@ const images = [
     subtitle: "Shape global policies and diplomatic relations",
   },
   {
-    src: "/uns.jpg?height=1080&width=1920",
+    src: "/UNS.jpg?height=1080&width=1920",
     alt: "Delegates in discussion",
     title: "Reshaping Narratives",
     subtitle: "Challenge existing paradigms with innovative solutions",
