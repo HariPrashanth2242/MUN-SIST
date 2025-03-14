@@ -329,33 +329,48 @@ export default function SchedulePage() {
           </div>
         </div>
 
-        {/* Venue Information */}
-        <div className="mt-8 sm:mt-12 p-4 sm:p-6 bg-muted rounded-lg">
-          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 mb-4">
-            <h2 className="text-2xl font-semibold">Venue Information</h2>
-            <Badge className="bg-primary">Campus Map Available</Badge>
-          </div>
-          <div className="space-y-2">
-            <div className="flex items-start gap-2">
-              <MapPin className="h-5 w-5 text-primary mt-1" />
-              <div>
-                <p className="font-medium">Sathyabama Institute of Science and Technology</p>
-                <p className="text-muted-foreground">Jeppiaar Nagar, Rajiv Gandhi Salai, Chennai - 600119</p>
-              </div>
-            </div>
-            <p className="text-sm text-muted-foreground mt-4">
-              All committee sessions will take place in designated rooms within the campus. Detailed room assignments
-              will be provided during registration.
-            </p>
-          </div>
-          <Button className="mt-4 sm:mt-6" asChild>
-            <Link href="https://maps.google.com" target="_blank" rel="noopener noreferrer">
-              <ExternalLink className="mr-2 h-4 w-4" />
-              View on Google Maps
-            </Link>
-          </Button>
+        <div className="mt-12 p-6 bg-muted rounded-lg">
+  <div className="flex items-center gap-2 mb-4">
+    <h2 className="text-2xl font-semibold">Venue Information</h2>
+  </div>
+
+  {/* Responsive container for map and venue info */}
+  <div className="flex flex-col lg:flex-row lg:space-x-6">
+    {/* Google Maps iframe on the left, takes full width on small screens */}
+    <iframe 
+      src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d5465.484117631727!2d80.21976657380007!3d12.871401088918699!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a525b5b82860113%3A0x9ff153ee9bb99be5!2sDr.%20Remibai%20Jeppiaar%20Auditorium!5e0!3m2!1sen!2sin!4v1741931615970!5m2!1sen!2sin"
+      className="w-full h-64 lg:w-1/2 lg:h-auto"
+      loading="lazy"
+    ></iframe>
+
+    {/* Venue information on the right, takes full width on small screens */}
+    <div className="bg-muted rounded-lg mt-6 lg:mt-0 lg:w-1/2">
+      <div className="flex items-start gap-2">
+        <MapPin className="h-5 w-5 text-primary mt-1" />
+        <div>
+          <p className="font-medium">Sathyabama Institute of Science and Technology</p>
+          <p className="text-muted-foreground">Jeppiaar Nagar, Rajiv Gandhi Salai, Chennai - 600119</p>
         </div>
       </div>
+      <p className="text-sm text-muted-foreground mt-4">
+        All committee sessions will take place in designated rooms within the campus. Detailed room assignments will be provided during registration.
+      </p>
+
+      {/* Centered button */}
+      <div className="mt-10 w-full flex justify-center">
+        <Button asChild>
+          <Link href="https://maps.app.goo.gl/E7r4yy9CypVvUUiU9" target="_blank" rel="noopener noreferrer">
+            <ExternalLink className="mr-2 h-4 w-4" />
+            View on Google Maps
+          </Link>
+        </Button>
+      </div>
     </div>
-  );
+  </div>
+</div>
+
+
+      </div>
+    </div>
+  )
 }
