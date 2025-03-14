@@ -426,8 +426,8 @@ export default function RegistrationPage() {
       <p className="font-semibold text-lg">Kindly ensure that you answer these questions accurately for the facilitation of the MOCK MUN training session.</p>
     </div>
 
-    <div className="space-y-6 mt-6 font-semibold">
-      <label className="block text-sm">Have you participated in MUN before?</label>
+    <div className="space-y-6 mt-6 ">
+      <label className="block text-sm font-semibold">Have you participated in MUN before?</label>
       <Select 
         name="entry.1738054312"
         required 
