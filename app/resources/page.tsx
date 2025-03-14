@@ -409,7 +409,7 @@ export default function ResourcesPage() {
                   </div>
 
                   {/* Position Paper Rubric */}
-                  <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between p-4 border rounded-lg">
+{/*<div className="flex flex-col sm:flex-row items-start sm:items-center justify-between p-4 border rounded-lg">
                     <div className="flex items-center">
                       <FileText className="h-5 w-5 text-primary mr-3" />
                       <div>
@@ -430,7 +430,7 @@ export default function ResourcesPage() {
                         </Link>
                       </Button>
                     </div>
-                  </div>
+                  </div> */}
                 </div>
               </CardContent>
             </Card>
