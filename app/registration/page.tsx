@@ -487,8 +487,23 @@ export default function RegistrationPage() {
 
 
         )}
+      <div className="p-6 mt-8 mb-6 border-l-4 border-red-600 bg-red-50 text-red-800 rounded-md">
+  <p className="font-semibold text-lg">Important Notice:</p>
+  <p className="mt-2 text-sm sm:text-base">
+    <strong>If you found any difficulty in registering please find the below google form link</strong>
+  </p>
+  <div className="mt-4">
+    <Button variant="outline" className="w-full sm:w-auto">
+      <ExternalLink className="mr-2 h-4 w-4" />
+      <Link href="https://docs.google.com/forms/d/e/1FAIpQLScNJhGtcfiscV4-r553336JR8XbZgzLCnYHYuTquh0pUUEt-Q/viewform?usp=header" target="_blank" rel="noopener noreferrer">
+        Google Form
+      </Link>
+    </Button>
   </div>
+</div>
 
+  </div>
+  
   
 
 {/* Remove the iframe */}
