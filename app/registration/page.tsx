@@ -64,27 +64,15 @@ export default function RegistrationPage() {
   const nextStep = () => setStep((prev) => (prev < totalSteps ? prev + 1 : prev));
   const prevStep = () => setStep((prev) => (prev > 1 ? prev - 1 : prev));
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setIsSubmitting(true);
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault(); // Prevent default form submission
   
-    const formData = new FormData(e.currentTarget);
-    formData.delete("dlut");
-    
-    try {
-      const response = await fetch("/api/submit", {
-        method: "POST",
-        body: new URLSearchParams(formData as any),
-      });
-      if (response.ok) {
-        setIsFormSubmitted(true);
-    } 
-} catch (error) {
-    console.error("Error submitting form:", error);
-} finally {
-    setIsSubmitting(false);
-}
+    setIsFormSubmitted(true); // Show success message
+  
+    // Directly submit the form
+    e.currentTarget.submit();
   };
+  ;
 
 
 
@@ -137,7 +125,7 @@ export default function RegistrationPage() {
                   <div className="flex items-center gap-2 mb-2">
                     <p className="font-medium">Important Notes:</p>
                     <Badge variant="outline" className="bg-primary/10 text-primary">
-                      Deadline: March 18, 2025
+                      Deadline: March 1, 2025
                     </Badge>
                   </div>
                   <ul className="list-disc pl-5 mt-2 space-y-1">
@@ -154,11 +142,11 @@ export default function RegistrationPage() {
         {!isFormSubmitted ? (
 <form 
     method="POST"
-    onSubmit={handleSubmit}
-    target="hidden_iframe" // Prevent redirect and submit through iframe
-  
-  className="w-full space-y-8"
->
+    action="https://docs.google.com/forms/d/e/1FAIpQLScNJhGtcfiscV4-r553336JR8XbZgzLCnYHYuTquh0pUUEt-Q/formResponse"
+    target="hidden_iframe"
+    onSubmit={handleSubmit} 
+    className="w-full space-y-8">
+
   {/* Form sections */}
   <div className="space-y-6">
     {/* Section 1 */}
@@ -273,7 +261,7 @@ export default function RegistrationPage() {
     <h2 className="text-lg font-semibold mt-8">Section 2: Committee Preferences</h2>
 
     {/* Agenda */}
-    <div className="p-6 border-l-4 border-primary bg-primary/20 text-black rounded-md">
+    <div className="p-6 border-l-4 border-blue-600 bg-blue-50 text-blue-800 rounded-md">
       <p className="font-semibold text-lg">Agenda:</p>
       <ul className="list-disc ml-4 text-sm">
         <li><strong>UNGA:</strong> Debating the future of international law in addressing neo-imperialism and economic exploitation.</li>
@@ -336,7 +324,7 @@ export default function RegistrationPage() {
   <h2 className="text-lg font-semibold">Section 3: Country Preferences</h2>
 
 {/* Country Matrix Information */}
-<div className="p-4 border-l-4 border-primary bg-primary/20 text-black rounded-md">
+<div className="p-4 border-l-4 border-blue-600 bg-blue-50 text-blue-800">
   <p className="font-semibold">Important Information:</p>
   <p>Kindly ensure that you go through the country portfolio/matrix before filling your country preferences.</p>
   <p><a href="https://docs.google.com/spreadsheets/d/1hrrm61R25ZJFPaxGm6Cd_0qH3WbbTNw-fxSh_V0dWH4/edit?usp=drivesdk" target="_blank" className="underline text-blue-600">Country Matrix Link</a></p>
@@ -422,7 +410,7 @@ export default function RegistrationPage() {
     <h2 className="text-lg font-semibold mt-8">Section 4: Experience Details</h2>
 
     {/* Experience Information */}
-    <div className="p-6 border-l-4 border-primary bg-primary/20 text-primary-800 rounded-md">
+    <div className="p-6 border-l-4 border-blue-600 bg-blue-50 text-primary-800 rounded-md">
       <p className="font-semibold text-lg">Kindly ensure that you answer these questions accurately for the facilitation of the MOCK MUN training session.</p>
     </div>
 
@@ -458,13 +446,6 @@ export default function RegistrationPage() {
         className="w-full p-4 border rounded-md"
         placeholder="Enter details of your previous MUN wins (if any)"
       />
-
-      {/* Dynamic dlut value */}
-      <input 
-        type="hidden" 
-        name="dlut" 
-        value={dlutValue} 
-      />
     </div>
   </div>
 
@@ -478,10 +459,10 @@ export default function RegistrationPage() {
 
 
 </form>):(
- <div className="p-4 w-full border-l-4 border-green-600 bg-green-50 text-green-800 rounded-md">
- <p className="font-semibold text-lg text-center whitespace-nowrap">
-   Thank you for registering! We appreciate your interest and look forward to your participation.
- </p>
+  <div className="p-4 w-full border-l-4 border-green-600 bg-green-50 text-green-800 rounded-md">
+  <p className="font-semibold text-base sm:text-lg text-center whitespace-normal sm:whitespace-nowrap">
+    Thank you for registering! We appreciate your interest and look forward to your participation.
+  </p>
 </div>
 
 
@@ -489,7 +470,9 @@ export default function RegistrationPage() {
         )}
   </div>
 
-  
+<iframe name="hidden_iframe" style={{ display: "none" }}></iframe>
+
+
 
 {/* Remove the iframe */}
 </CardFooter>
@@ -663,7 +646,7 @@ export default function RegistrationPage() {
                     <rect width="20" height="16" x="2" y="4" rx="2" />
                     <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
                   </svg>
-                  <span>Munianish076@gmail.com</span>
+                  <span>info@sathyabamamun.com</span>
                 </div>
                 <div className="flex items-center">
                   <svg
@@ -680,11 +663,11 @@ export default function RegistrationPage() {
                   >
                     <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
                   </svg>
-                  <span>+91 962992419</span>
+                  <span>+91 9876543210</span>
                 </div>
               </div>
               <Button className="w-full mt-4" asChild>
-                <Link href="/contact#inquiry" passHref>
+                <Link href="https://forms.google.com" target="_blank" rel="noopener noreferrer">
                   <ExternalLink className="mr-2 h-4 w-4" />
                   Submit an Inquiry
                 </Link>
