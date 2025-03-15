@@ -38,3 +38,20 @@ export async function POST(req: Request) {
     return NextResponse.json({ message: "Error submitting form", error: error.message }, { status: 500 });
   }
 }
+
+// Add CORS headers to the response
+export async function middleware(req) {
+  const res = NextResponse.next();
+
+  // Set CORS headers
+  res.headers.set('Access-Control-Allow-Origin', '*'); // Replace '*' with specific domain if needed
+  res.headers.set('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+  res.headers.set('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+
+  // Handle preflight OPTIONS request
+  if (req.method === 'OPTIONS') {
+    return new NextResponse(null, { status: 200 });
+  }
+
+  return res;
+}
