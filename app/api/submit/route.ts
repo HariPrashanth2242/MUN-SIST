@@ -8,7 +8,7 @@ export async function POST(req: Request) {
     formData.forEach((value, key) => (data[key] = value.toString()));
 
     // ✅ 2. Check all required fields
-    const requiredFields = ['entry.2058220784', 'entry.1693362767', 'anotherRequiredField'];
+    const requiredFields = ['entry.2058220784', 'entry.1693362767'];
     for (let field of requiredFields) {
       if (!data[field]) {
         console.error(`❌ Missing required field: ${field}`);
