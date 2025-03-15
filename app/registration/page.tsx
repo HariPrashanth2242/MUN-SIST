@@ -478,11 +478,11 @@ export default function RegistrationPage() {
 
 
 </form>):(
- <div className="p-4 w-full border-l-4 border-green-600 bg-green-50 text-green-800 rounded-md">
- <p className="font-semibold text-lg text-center whitespace-nowrap">
-   Thank you for registering! We appreciate your interest and look forward to your participation.
- </p>
-</div>
+  <div className="p-4 w-full border-l-4 border-green-600 bg-green-50 text-green-800 rounded-md">
+                      <p className="font-semibold text-base sm:text-lg text-center whitespace-normal sm:whitespace-nowrap">
+                        Thank you for registering! We appreciate your interest and look forward to your participation.
+                      </p>
+                    </div>
 
 
 
