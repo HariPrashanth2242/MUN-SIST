@@ -75,7 +75,7 @@ export default function AboutPage() {
   </p>
 
   <p className="text-muted-foreground mb-4">
-    Although it seems sudden, this has been my dream since day one of my college life—to bring Model United Nations to our college.
+    This has been my dream since day one of my college life—to bring Model United Nations to our college.
   </p>
 
   <p className="text-muted-foreground mb-4">

@@ -10,7 +10,7 @@ const galleryImages = [
   {
     src: "/gallery1.jpg?height=600&width=800",
     alt: "Previous MUN Conference",
-    caption: "Delegates in session during last year's conference",
+    caption: "Delegates in session during  conference",
   },
   {
     src: "/gallery2.jpg?height=600&width=800",

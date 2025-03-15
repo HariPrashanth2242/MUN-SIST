@@ -18,7 +18,7 @@ const faqs = [
   {
     question: "What committees are available?",
     answer:
-      "We offer four committees: UNGA (General Assembly), UNHRC (Human Rights Council), UNCSW (Commission on Status of Women), and a Crisis Committee. Each addresses specific global challenges requiring innovative diplomatic solutions.",
+      "We offer four committees: UNGA (General Assembly), UNHRC (Human Rights Council), UNCSW (Commission on Status of Women),  Crisis Committee and an IPC (International Press Corps). Each addresses specific global challenges requiring innovative diplomatic solutions.",
     category: "Committees",
   },
   {
