@@ -277,7 +277,7 @@ Stay connected with the organizing team and fellow delegates for instant updates
                         className="w-full h-full object-cover"
                       />
                     </div>
-                    <h3 className="font-semibold">thaarani</h3>
+                    <h3 className="font-semibold">Thaarani S</h3>
                     <p className="text-sm text-muted-foreground mb-2">Deputy Secretary General</p>
                     <Link href="mailto:natureschild139@gmail.com" className="text-primary text-sm hover:underline">
                     natureschild139@gmail.com
