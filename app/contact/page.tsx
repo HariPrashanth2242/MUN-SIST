@@ -297,7 +297,7 @@ Stay connected with the organizing team and fellow delegates for instant updates
               official social media accounts.
             </p>
             <div className="flex flex-wrap gap-4">
-              <Button variant="outline" asChild>
+              <Button variant="outline" asChild onClick={(e) => e.preventDefault()}>
                 <Link href="https://instagram.com" target="_blank" rel="noopener noreferrer">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -318,7 +318,7 @@ Stay connected with the organizing team and fellow delegates for instant updates
                   Instagram
                 </Link>
               </Button>
-              <Button variant="outline" asChild>
+              <Button variant="outline" asChild onClick={(e) => e.preventDefault()}>
                 <Link href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -339,7 +339,7 @@ Stay connected with the organizing team and fellow delegates for instant updates
                   LinkedIn
                 </Link>
               </Button>
-              <Button variant="outline" asChild>
+              <Button variant="outline" asChild onClick={(e) => e.preventDefault()}>
                 <Link href="https://twitter.com" target="_blank" rel="noopener noreferrer">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"

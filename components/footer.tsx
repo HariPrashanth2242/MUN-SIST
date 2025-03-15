@@ -126,7 +126,7 @@ export default function Footer() {
             <div>
               <h4 className="text-sm font-semibold mb-3">Follow Us</h4>
               <div className="flex gap-4">
-                {[{ Icon: Instagram, href: "https://instagram.com", label: "Instagram" }, { Icon: Youtube, href: "https://youtube.com", label: "YouTube" }, { Icon: Linkedin, href: "https://linkedin.com", label: "LinkedIn" }, { Icon: Mail, href: "mailto:info@sathyabamamun.com", label: "Email" }].map(
+                {[{ Icon: Instagram, href: "", label: "Instagram" }, { Icon: Youtube, href: "", label: "YouTube" }, { Icon: Linkedin, href: "", label: "LinkedIn" }, { Icon: Mail, href: "mailto:munianish076@gmail.com", label: "Email" }].map(
                   ({ Icon, href, label }) => (
                     <a
                       key={label}
@@ -136,7 +136,7 @@ export default function Footer() {
                       aria-label={`Visit our ${label}`}
                       className="text-muted-foreground hover:text-primary transition-colors duration-200"
                     >
-                      <Icon className="w-6 h-6" />
+                      <Icon onClick={(e) => e.preventDefault()} className="w-6 h-6" />
                     </a>
                   )
                 )}
@@ -152,7 +152,7 @@ export default function Footer() {
             {[{ name: "Privacy Policy", path: "/privacy" }, { name: "Terms of Use", path: "/terms" }, { name: "FAQs", path: "/app/page.tsx" }].map(
               ({ name, path }, index, arr) => (
                 <React.Fragment key={name}>
-                  <Link href={path} className="text-sm text-muted-foreground hover:text-primary transition-colors duration-200">
+                  <Link href={path}   className="text-sm text-muted-foreground hover:text-primary transition-colors duration-200">
                     {name}
                   </Link>
                   {index < arr.length - 1 && <span className="h-4 w-px bg-border"></span>}
