@@ -30,21 +30,30 @@ export default function RegistrationPage() {
   const prevStep = () => setStep((prev) => (prev > 1 ? prev - 1 : prev));
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
 
-  const handleSubmit = async () => {
-    // Prevent default form submission
-
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+  
+    // Ensure e.currentTarget is defined
+    if (!e.currentTarget) {
+      console.error("Form element is undefined.");
+      return;
+    }
+  
     setIsSubmitting(true);
-
-    // Simulate form submission here, then update the state
+  
+    // Log form data for debugging
+    const formData = new FormData(e.currentTarget);
+    for (const [key, value] of formData.entries()) {
+      console.log(`${key}: ${value}`);
+    }
+  
     try {
-      // You could also trigger the actual Google Forms submission using an iframe or other techniques
-      setTimeout(() => {
-        setSubmitted(true); // Change state to show success message
-        setIsSubmitting(false); // Enable the submit button after submission
-      }, 2000); // Simulate an API request delay
+      // Submit the form to the iframe
+      e.currentTarget.submit();
     } catch (error) {
-      console.error("Submission failed", error);
-      setIsSubmitting(false); // Handle error state here if needed
+      console.error("Form submission failed:", error);
+      alert("Form submission failed. Please check your internet connection and try again.");
+      setIsSubmitting(false); // Reset submitting state
     }
   };
 
@@ -109,21 +118,17 @@ export default function RegistrationPage() {
               <CardFooter>
                 {/* Form */}
                 <div>
-{!submitted ? (
-  <div>
-                  <form 
-                  action="https://docs.google.com/forms/d/e/1FAIpQLScNJhGtcfiscV4-r553336JR8XbZgzLCnYHYuTquh0pUUEt-Q/formResponse"
-                  method="POST"
-                  target="hidden_iframe"
-
-                  onSubmit={handleSubmit}
-                  className="w-full space-y-8"   
-                  >
-
-<div className="space-y-6">
-                        {/* Section 1 */}
+                  {!isFormSubmitted ? (
+                    <form
+                      action="https://docs.google.com/forms/d/e/1FAIpQLScNJhGtcfiscV4-r553336JR8XbZgzLCnYHYuTquh0pUUEt-Q/formResponse"
+                      method="POST"
+                      target="hidden_iframe"
+                      onSubmit={handleSubmit}
+                      className="w-full space-y-8"
+                    >
+                      {/* Section 1: Personal Details */}
+                      <div className="space-y-6">
                         <h2 className="text-lg font-semibold mt-8">Section 1: Personal Details</h2>
-
                         <div className="space-y-6">
                           {/* Full Name */}
                           <label className="block text-sm font-medium">
@@ -134,7 +139,8 @@ export default function RegistrationPage() {
                             name="entry.2058220784"
                             required
                             className="w-full p-4 border rounded-md"
-                            placeholder="Enter your full name with initial" />
+                            placeholder="Enter your full name with initial"
+                          />
 
                           {/* Email ID */}
                           <label className="block text-sm font-medium">
@@ -145,7 +151,8 @@ export default function RegistrationPage() {
                             name="entry.1693362767"
                             required
                             className="w-full p-4 border rounded-md"
-                            placeholder="Enter your email address" />
+                            placeholder="Enter your email address"
+                          />
 
                           {/* Contact Number */}
                           <label className="block text-sm font-medium">
@@ -156,7 +163,8 @@ export default function RegistrationPage() {
                             name="entry.2058161891"
                             required
                             className="w-full p-4 border rounded-md"
-                            placeholder="Enter your WhatsApp number" />
+                            placeholder="Enter your WhatsApp number"
+                          />
 
                           {/* Year of Study */}
                           <label className="block text-sm font-medium">
@@ -189,7 +197,8 @@ export default function RegistrationPage() {
                             name="entry.141136026"
                             required
                             className="w-full p-4 border rounded-md"
-                            placeholder="Enter your department" />
+                            placeholder="Enter your department"
+                          />
 
                           {/* Currently Enrolled in */}
                           <label className="block text-sm font-medium">
@@ -210,6 +219,7 @@ export default function RegistrationPage() {
                             </SelectContent>
                           </Select>
 
+                          {/* Course Name */}
                           <label className="block text-sm font-medium">
                             Course Name <span className="text-red-500">*</span>
                           </label>
@@ -218,15 +228,14 @@ export default function RegistrationPage() {
                             name="entry.1396454272"
                             required
                             className="w-full p-4 border rounded-md"
-                            placeholder="Enter your course name" />
+                            placeholder="Enter your course name"
+                          />
                         </div>
                       </div>
 
+                      {/* Section 2: Committee Preferences */}
                       <div className="space-y-6">
-                        {/* Section 2 */}
                         <h2 className="text-lg font-semibold mt-8">Section 2: Committee Preferences</h2>
-
-                        {/* Agenda */}
                         <div className="p-6 border-l-4 border-primary bg-primary/20 text-black rounded-md">
                           <p className="font-semibold text-lg">Agenda:</p>
                           <ul className="list-disc ml-4 text-sm">
@@ -249,6 +258,7 @@ export default function RegistrationPage() {
                         </div>
 
                         <div className="space-y-6 mt-6">
+                          {/* Committee Preference One */}
                           <label className="block text-sm font-medium">
                             Committee Preference One <span className="text-red-500">*</span>
                           </label>
@@ -283,6 +293,7 @@ export default function RegistrationPage() {
                             </SelectContent>
                           </Select>
 
+                          {/* Committee Preference Two */}
                           <label className="block text-sm font-medium">
                             Committee Preference Two <span className="text-red-500">*</span>
                           </label>
@@ -307,11 +318,9 @@ export default function RegistrationPage() {
                         </div>
                       </div>
 
+                      {/* Section 3: Country Preferences */}
                       <div className="space-y-6">
-                        {/* Section 3: Country Preferences */}
                         <h2 className="text-lg font-semibold">Section 3: Country Preferences</h2>
-
-                        {/* Country Matrix Information */}
                         <div className="p-4 border-l-4 border-primary bg-primary/20 text-black rounded-md">
                           <p className="font-semibold">Important Information:</p>
                           <p>
@@ -343,7 +352,8 @@ export default function RegistrationPage() {
                             name="entry.48250264"
                             required
                             className="w-full p-4 border rounded-md"
-                            placeholder="Enter your first country preference" />
+                            placeholder="Enter your first country preference"
+                          />
 
                           <label className="block text-sm font-medium">
                             Committee One - Country Preference Two <span className="text-red-500">*</span>
@@ -353,7 +363,8 @@ export default function RegistrationPage() {
                             name="entry.1256802439"
                             required
                             className="w-full p-4 border rounded-md"
-                            placeholder="Enter your second country preference" />
+                            placeholder="Enter your second country preference"
+                          />
 
                           <label className="block text-sm font-medium">
                             Committee One - Country Preference Three <span className="text-red-500">*</span>
@@ -363,7 +374,8 @@ export default function RegistrationPage() {
                             name="entry.1840640281"
                             required
                             className="w-full p-4 border rounded-md"
-                            placeholder="Enter your third country preference" />
+                            placeholder="Enter your third country preference"
+                          />
 
                           {/* Committee Two - Country Preferences */}
                           <label className="block text-sm font-medium">
@@ -374,7 +386,8 @@ export default function RegistrationPage() {
                             name="entry.584391547"
                             required
                             className="w-full p-4 border rounded-md"
-                            placeholder="Enter your first country preference" />
+                            placeholder="Enter your first country preference"
+                          />
 
                           <label className="block text-sm font-medium">
                             Committee Two - Country Preference Two <span className="text-red-500">*</span>
@@ -384,7 +397,8 @@ export default function RegistrationPage() {
                             name="entry.1952299249"
                             required
                             className="w-full p-4 border rounded-md"
-                            placeholder="Enter your second country preference" />
+                            placeholder="Enter your second country preference"
+                          />
 
                           <label className="block text-sm font-medium">
                             Committee Two - Country Preference Three <span className="text-red-500">*</span>
@@ -394,15 +408,14 @@ export default function RegistrationPage() {
                             name="entry.995694688"
                             required
                             className="w-full p-4 border rounded-md"
-                            placeholder="Enter your third country preference" />
+                            placeholder="Enter your third country preference"
+                          />
                         </div>
                       </div>
 
+                      {/* Section 4: Experience Details */}
                       <div className="space-y-6">
-                        {/* Section 4 */}
                         <h2 className="text-lg font-semibold mt-8">Section 4: Experience Details</h2>
-
-                        {/* Experience Information */}
                         <div className="p-6 border-l-4 border-primary bg-primary/20 text-primary-800 rounded-md">
                           <p className="font-semibold text-lg">
                             Kindly ensure that you answer these questions accurately for the facilitation of the MOCK MUN training session.
@@ -410,6 +423,7 @@ export default function RegistrationPage() {
                         </div>
 
                         <div className="space-y-6 mt-6">
+                          {/* Previous MUN Experience */}
                           <label className="block text-sm font-semibold">Have you participated in MUN before?</label>
                           <Select
                             name="entry.1738054312"
@@ -426,47 +440,51 @@ export default function RegistrationPage() {
                             </SelectContent>
                           </Select>
 
+                          {/* Previous MUN Experiences */}
                           <label className="block text-sm font-semibold">Previous MUN Experiences</label>
                           <Input
                             type="text"
                             name="entry.436128629"
                             className="w-full p-4 border rounded-md"
-                            placeholder="Enter details of your previous MUN experiences (if any)" />
+                            placeholder="Enter details of your previous MUN experiences (if any)"
+                          />
 
+                          {/* Previous MUN Wins */}
                           <label className="block text-sm font-semibold">Previous MUN Wins</label>
                           <Input
                             type="text"
                             name="entry.1967484251"
                             className="w-full p-4 border rounded-md"
-                            placeholder="Enter details of your previous MUN wins (if any)" />
+                            placeholder="Enter details of your previous MUN wins (if any)"
+                          />
                         </div>
                       </div>
 
-                      <Button 
-    type="submit" 
-    className="w-full py-4 px-6 bg-primary text-white rounded-md mt-8"
-    disabled={isSubmitting}
-  >
-    {isSubmitting ? 'Submitting...' : 'Submit Registration'}
-  </Button>
-  </form>
-
-
-  <iframe name="hidden_iframe" style={{ display: "none" }}/>
-</div>
-
-
-                  ):(
+                      {/* Submit Button */}
+                      <Button
+                        type="submit"
+                        className="w-full py-4 px-6 bg-primary text-white rounded-md mt-8"
+                        disabled={isSubmitting}
+                      >
+                        {isSubmitting ? "Submitting..." : "Submit Registration"}
+                      </Button>
+                    </form>
+                  ) : (
                     <div className="p-4 w-full border-l-4 border-green-600 bg-green-50 text-green-800 rounded-md">
-                    <p className="font-semibold text-base sm:text-lg text-center whitespace-normal sm:whitespace-nowrap">
-                      Thank you for registering! We appreciate your interest and look forward to your participation.
-                    </p>
-                  </div>
-
-
-
-        )}
-
+                      <p className="font-semibold text-base sm:text-lg text-center whitespace-normal sm:whitespace-nowrap">
+                        Thank you for registering! We appreciate your interest and look forward to your participation.
+                      </p>
+                    </div>
+                  )}
+                  <iframe
+                    name="hidden_iframe"
+                    id="hidden_iframe"
+                    style={{ display: "none" }}
+                    onLoad={() => {
+                      setIsFormSubmitted(true); // Show success message when the iframe loads
+                      setIsSubmitting(false); // Reset submitting state
+                    }}
+                  ></iframe>
                 </div>
               </CardFooter>
             </Card>
@@ -663,8 +681,6 @@ export default function RegistrationPage() {
           </Card>
         </div>
       </div>
-
-    
     </div>
   );
 }
