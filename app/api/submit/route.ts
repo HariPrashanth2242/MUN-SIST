@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 
+// Handle POST request
 export async function POST(req: Request) {
   try {
     // ✅ 1. Get form data correctly
@@ -37,8 +38,6 @@ export async function POST(req: Request) {
         'Upgrade-Insecure-Requests': '1'
       }
     });
-    
-    
 
     // ✅ 5. Check for a successful submission
     if (response.ok) {
@@ -61,8 +60,8 @@ export async function POST(req: Request) {
 export async function middleware(req) {
   const res = NextResponse.next();
 
-  // Set CORS headers (can be customized to restrict to certain domains)
-  res.headers.set('Access-Control-Allow-Origin', 'https://example.com'); // Set your trusted domain
+  // Allow all origins for CORS (for testing purposes only)
+  res.headers.set('Access-Control-Allow-Origin', '*'); // Allow all origins
   res.headers.set('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
   res.headers.set('Access-Control-Allow-Headers', 'Content-Type, Authorization');
   res.headers.set('Access-Control-Allow-Credentials', 'true');
