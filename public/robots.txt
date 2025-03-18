@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://sistmun.com
+
+# Sitemaps
+Sitemap: https://sistmun.com/sitemap.xml
