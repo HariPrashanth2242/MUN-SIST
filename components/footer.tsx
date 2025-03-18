@@ -54,13 +54,13 @@ export default function Footer() {
   }, [])
 
   return (
-    <footer className="bg-foreground py-12 px-6 sm:px-8 lg:px-12 border-t border-border">
+    <footer className="bg-background py-12 px-6 sm:px-8 lg:px-12 border-t border-border">
       <div className="max-w-7xl mx-auto">
         {/* Top Section */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 mb-12">
           {/* Logo and Description */}
           <div className="flex flex-col lg:items-start">
-            <Logo  className="mb-6 text-background" />
+            <Logo className="mb-6" />
             <p className="text-sm text-muted-foreground leading-relaxed">
               Sathyabama Institute of Science and Technology's inaugural Model United Nations conference. Join us for
               two days of diplomatic simulations, debates, and networking with fellow delegates as we work together to
@@ -71,7 +71,7 @@ export default function Footer() {
           {/* Navigation Links */}
           <div className="flex flex-col md:flex-row justify-between lg:justify-center gap-8 lg:gap-28 lg:col-span-2">
             <div>
-              <h3 className="text-lg text-background font-semibold mb-4">Explore</h3>
+              <h3 className="text-lg font-semibold mb-4">Explore</h3>
               <ul className="space-y-2 text-sm">
                 {[{ name: "Home", path: "/" }, { name: "About", path: "/about" }, { name: "Committees", path: "/committees" }].map(
                   ({ name, path }) => (
@@ -85,7 +85,7 @@ export default function Footer() {
               </ul>
             </div>
             <div>
-              <h3 className="text-lg text-background font-semibold mb-4">Resources</h3>
+              <h3 className="text-lg font-semibold mb-4">Resources</h3>
               <ul className="space-y-2 text-sm">
                 {[{ name: "Study Guides", path: "/resources" }, { name: "Schedule", path: "/schedule" }, { name: "FAQs", path: "/#faq" }].map(
                   ({ name, path }) => (
@@ -103,7 +103,7 @@ export default function Footer() {
           {/* Newsletter & Social Links */}
           <div className="space-y-6">
             <div>
-              <h3 className="text-lg font-semibold mb-4 text-background">Subscribe to our newsletter</h3>
+              <h3 className="text-lg font-semibold mb-4">Subscribe to our newsletter</h3>
               <form onSubmit={handleSubscribe} className="mb-4">
                 <div className="flex flex-col sm:flex-row gap-2">
                   <Input
@@ -146,7 +146,7 @@ export default function Footer() {
         </div>
 
         {/* Footer Bottom */}
-        <div className="border-t  border-muted-foreground pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
+        <div className="border-t border-border pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
           <p className="text-sm text-muted-foreground">© {year || "2025"} Sathyabama MUN. All rights reserved.</p>
           <div className="flex items-center gap-2">
             {[{ name: "Privacy Policy", path: "/privacy" }, { name: "Terms of Use", path: "/terms" }, { name: "FAQs", path: "/app/page.tsx" }].map(
@@ -155,7 +155,7 @@ export default function Footer() {
                   <Link href={path}   className="text-sm text-muted-foreground hover:text-primary transition-colors duration-200">
                     {name}
                   </Link>
-                  {index < arr.length - 1 && <span className="h-4 w-px bg-muted-foreground"></span>}
+                  {index < arr.length - 1 && <span className="h-4 w-px bg-border"></span>}
                 </React.Fragment>
               )
             )}
